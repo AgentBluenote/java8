@@ -1,0 +1,183 @@
+
+
+5.3
+
+  tuples are immutable
+
+  t[0] = 8888   # error
+      tuple, object does not support item assignment.
+   tuple can contain mutable objects ([1,2,3], [1,2,3])
+
+  there is a special case for constructing a tuple with 0 or 1 values.
+empty = ()
+tupleOfOne = ("one")
+
+print( tupleOfOne )
+
+
+
+ 5.4 sets  
+ 5.5 Dictionaries
+ 6.3  some modules are build in to the interpreter either for efficientcy or to  
+     provide acces to operating system primitive such as system calls
+     not part of the core of the language but are never the less built in
+
+   dir(), builtins() 
+
+  6.4 packages
+     * packages needs _init__.py in the directory to make python treat directory as a package  
+     * basically the directory where the module is determines what package it is. 
+     * can be left empy or can initialize the package 
+     import 
+         import sound.effects.echo  #  with this import you must refenece echo module by its full name. 
+                                       sound.effects.echo.doSomething(); 
+                                    *  this import is restricted to only being able to import subpackage or module 
+     alternatively: 
+         from sound.effects import echo  #  can use echo.doSomthing(). 
+  
+     using from sound.effects import * notation does not import all the modules as you would expect 
+         unless you define __all__ = ["echo", "surround", "reverse"] in __init__.py file 
+         *  this is considered bad practice anyway.
+     Packages in multiple directories is defined by the __path__ variable 
+
+  7.1  formatting Strings
+  7.2  working with file descriptors: open() 
+       should use the with keyword when working with files.  
+  MIKE What is the with keyword?
+  
+  
+  
+  
+  Vocab:
+  
+  
+  *  serialization  - converting an object into a form that can be written to a file
+  			or sent across a network.  marshaling/unmarsharing of bytes.
+  * JSON -  primary data format used for asynchronous browser/communication (AJAJ)
+  			replacing XML in AJAX 
+  			*  JSON takes python data structures and flattens them into strings 
+  				suitable to send over a network. 
+  
+ exception handling:
+ 
+try 
+except ValueError:
+except OSError as err:  // what does the "as err" part mean? 
+
+9.  Classes
+
+*  class inheritance mechanism allow multible base classes
+
+namespaces:
+
+* A namespace is a mapping from names to objects.
+
+* Objects have individuality, and multiple names (in multiple scopes) 
+  can be bound to the same object. This is known as aliasing in other languages.
+  
+* aliases behave like pointers in some respects
+  
+*  I use the word attribute for any name following a dot 
+   
+// interesting
+*   Writable attributes may also be deleted with the del statement. For example, del modname.the_answer 
+   will remove the attribute the_answer from the object named by modname.
+
+** Scopes  // important
+* Although scopes are determined statically, they are used dynamically. At any time during execution, 
+  there are at least three nested scopes whose namespaces are directly accessible:
+
+1. the innermost scope, which is searched first, contains the local names
+//interesting
+2.  the scopes of any enclosing functions, which are searched starting with the nearest enclosing scope, 
+   contains non-local, but also non-global names
+3. the next-to-last scope contains the current module’s global names
+4. the outermost scope (searched last) is the namespace containing built-in names
+
+* keep in mind nonlical and global statements
+
+It is important to realize that scopes are determined textually: the global scope of a function defined in a module is that module’s namespace 
+
+* static name resolution just means determining the correct scope of the identifier at compile time.
+* However, relying on dynamic name resolution in code is discouraged by the Python community.
+
+* scope is just in what context block and identifier can be refrenced
+     identifier - variable, function, classname, etc.
+* namespace is where the identifier is define to prevent ambuguity. 
+* binding mean:  variable = 124;  ( binds the number 123 to variable )
+
+Class objects support two kinds of operations: attribute references and instantiation.
+ MyClass.i and MyClass.f are valid attribute references, returning an integer and a function object, respectively.
+Class instantiation uses function notation.  class()
+But x.f is not the same thing as MyClass.f — it is a method object, not a function object.
+
+  class MyClass:
+    """A simple example class"""
+    i = 12345
+    def f(self):
+        return 'hello world'
+ 
+ * so you can change the value of MyClass.i by assignment.  
+   // can change attribut without accessor methods
+   
+   x = MyClass()
+   x.increment =1  // this is legal, you can reference attributes on the fly.
+   
+   Usually, a method is called right after it is bound:
+   x.f() // braces makes the call.
+   
+   However, it is not necessary to call a method right away: x.f is a method object, and can be stored away and called at a later time.
+ xf = x.f
+while True:
+    print(xf())
+ 
+ 9.3.5
+ Class and Instance variables ( important behavior differences )
+ Generally speaking, instance variables are for data unique to each instance
+ and class variables are for attributes and methods shared by all instances of the class
+ 
+ Objects have individuality, and multiple names (in multiple scopes) can be bound to the same object. This is known as aliasing in other languages
+ liases which behave like pointers in some respects:
+ 
+ Data attributes may be referenced by methods as well as by ordinary users (“clients”) of an object. In other words, classes are not usable to implement pure abstract data types. In fact, nothing in Python makes it possible to enforce data hiding — it is all based upon convention.
+ 
+ Often, the first argument of a method is called self. This is nothing more than a convention: the name self has absolutely no special meaning to Python
+ 
+ The global scope associated with a method is the module containing its definition.
+ 
+ (For C++ programmers: all methods in Python are effectively virtual.)
+ 
+ Data attributes override method attributes with the same name; to avoid accidental name conflicts, which may cause hard-to-find bugs in large programs, it is wise to use some kind of convention 
+ 
+ The name BaseClassName must be defined in a scope containing the derived class definition. 
+ In place of a base class name, other arbitrary expressions are also allowed. 
+ This can be useful, for example, when the base class is defined in another module:
+
+class DerivedClassName(modname.BaseClassName):  
+
+Python has two built-in functions that work with inheritance:
+isinstance() 
+issubclass()
+
+(also called its type). It is stored as object.__class__.
+
+
+9.5.1
+Python supports a form of multiple inheritance as well
+
+There is an algorithms that python uses to get around typical multiple inheritance problems ( Diamond Pattern. etc. ) 
+Taken together, these properties make it possible to design reliable and extensible classes with multiple inheritance.
+
+9.6. Private Variables 
+    
+Private” instance variables that cannot be accessed except from inside an object don’t exist in Python
+
+Name mangling is hack to get private variable:  __variablename   
+Since there is a valid use-case for class-private members (namely to avoid name clashes of names 
+with names defined by subclasses), there is limited support for such a mechanism, called name mangling. 
+Any identifier of the form __spam (at least two leading underscores, at most one trailing underscore) 
+is textually replaced with _classname__spam, where classname is the current class name with leading underscore(s) stripped.
+ 
+Name mangling is helpful for letting subclasses override methods without breaking intraclass method calls.  
+ 
+  
