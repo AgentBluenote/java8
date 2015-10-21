@@ -1,0 +1,20 @@
+FYI a normal usage of GIT would be the Following
+
+1.	Check out Trunk
+2.	Branch Trunk
+3.	Push Branch
+4.	Code Feature
+5.	Fetch updated trunk
+6.	Merge trunk into branche
+7.	Push branch
+8.	Test before merge into trunk  ( intergration )
+9.	Merge into trunk, (usualy with peer code review)
+10.	Clean up Working Environment
+11.	Start Over
+
+
+* never work of master, check it out them branch. 
+  you only merge to master, you don't edit on the master.
+  
+  Pull Requests initiate discussion about your commits.
+  By using GitHub's @mention system in your Pull Request message, you can ask for feedback from specific people or teams,
