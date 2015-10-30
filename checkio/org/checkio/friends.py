@@ -11,7 +11,7 @@ class Friends:
     Connections can be repeated in the initial data, but inside it's stored once. 
     Each connection has only two states - existing or not.
     """ 
-    # mike
+    # mike,  variable declared here are not "instance"
     
     def __init__(self, connections):
         """Docstring."""
@@ -26,8 +26,6 @@ class Friends:
                 print("initializing " , i)
                 
         print(self.m_connections)    
-
-#       raise NotImplementedError
 
     def add(self, connection):
         ''' Add a connection in the instance. "connection" is a set of two names (strings). 
@@ -61,27 +59,82 @@ class Friends:
         print("Inside remove()", connection )
 
         # remove from internal list if it exists. 
-        # .romove(arg) raises exception if not there. 
         try:
             print("m_connections = ", self.m_connections)
             print("remove = self.connection = ", self.connection)
+            # remove() raises exception if not there. 
             if self.m_connections.remove(self.connection) == None:
-                print(self.m_connections)
-                print("After remove = self.connection = ", self.connection)
+                print("After remove = self.connection = ", self.m_connections)
                 return True
-#           else:
-#               return False
+
         except ValueError:  # remove() raises ValueError when not in list
             print("inside ValueError exception")
             return False
 
-#       raise NotImplementedError
-
     def names(self):
-        raise NotImplementedError
+        """ Returns a set of names."""
+        
+        """The set contains only names which are connected with somebody."""
+        self._has_friends = set()
+
+        print("Inside names()" )
+        print("self.m_connections = ", self.m_connections ) 
+
+        """
+        print("self.m_connections[0] = ", self.m_connections[0] ) 
+        print("self.m_connections[1] = ", self.m_connections[1] ) 
+        print("self.m_connections[2] = ", self.m_connections[2] ) 
+        """ 
+
+        """ 
+        self._has_friends.update(self.m_connections[0])
+        print("_has_friends = ", self._has_friends)
+
+        self._has_friends.update(self.m_connections[1])
+        print("_has_friends = ", self._has_friends)
+
+        self._has_friends.update(self.m_connections[2])
+        print("_has_friends = ", self._has_friends)
+        """
+        
+        for i in self.m_connections:
+            self._has_friends.update(i)
+            
+        return self._has_friends
 
     def connected(self, name):
-        raise NotImplementedError
+        """Returns a set of names which is connected with the given "name"."""
+
+        """
+        If "name" does not exist in the instance, then return an empty set.
+        """
+        self.name = name
+        self._connected_name = set()
+
+        test = set()
+        
+        print("Inside connected()\n\n\n")
+        
+        print("self.m_connections[0] = ", self.m_connections[0] ) 
+        print("self.m_connections[1] = ", self.m_connections[1] ) 
+        print("self.m_connections[2] = ", self.m_connections[2] ) 
+       
+        test.issubset(self.name)
+#       test.jjjj
+
+        
+        for el in self.m_connections: 
+            if self.name in el:
+                print(self.name)
+                temp = el.difference(self.name)
+                print(temp)
+
+                self._connected_name.update(temp)
+
+        print("Before return = ", self._connected_name)            
+
+        return self._connected_name        
+#       raise NotImplementedError
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
@@ -92,6 +145,6 @@ if __name__ == '__main__':
     assert letter_friends.add({"c", "d"}) is False, "Add again"
     assert letter_friends.remove({"c", "d"}) is True, "Remove"
     assert digit_friends.remove({"c", "d"}) is False, "Remove non exists"
-#   assert letter_friends.names() == {"a", "b", "c"}, "Names"
-#   assert letter_friends.connected("d") == set(), "Non connected name"
-#   assert letter_friends.connected("a") == {"b", "c"}, "Connected name"
+    assert letter_friends.names() == {"a", "b", "c"}, "Names"
+    assert letter_friends.connected("d") == set(), "Non connected name"
+    assert letter_friends.connected("a") == {"b", "c"}, "Connected name"
