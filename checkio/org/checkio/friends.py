@@ -89,24 +89,35 @@ class Friends:
         self._connected_name = set()
 
         print("Inside connected()")
+        print("m_connections = ", self.m_connections)
         
-        for el in self.m_connections: 
-            if self.name in el:
-                temp = el.difference(self.name)
+        print("len = ", len(self.m_connections))
 
-                self._connected_name.update(temp)
+        for el in self.m_connections: 
+#           print(el)
+            if self.name in el:
+                print("el = ", el)
+                print("name = ", self.name)
+                el.discard(self.name)  # 
+                self._connected_name.add(el.pop()) 
+
+        print(self._connected_name)
 
         return self._connected_name        
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
-    letter_friends = Friends(({"a", "b"}, {"b", "c"}, {"c", "a"}, {"a", "c"}))
-    digit_friends = Friends([{"1", "2"}, {"3", "1"}])
+#   letter_friends = Friends(({"a", "b"}, {"b", "c"}, {"c", "a"}, {"a", "c"}))
+#   digit_friends = Friends([{"1", "2"}, {"3", "1"}])
+    
+    f = Friends(({"nikola", "sophia"}, {"stephen", "robot"}, {"sophia", "pilot"}))
+    f.connected("nikola")
 
-    assert letter_friends.add({"c", "d"}) is True, "Add"
-    assert letter_friends.add({"c", "d"}) is False, "Add again"
-    assert letter_friends.remove({"c", "d"}) is True, "Remove"
-    assert digit_friends.remove({"c", "d"}) is False, "Remove non exists"
-    assert letter_friends.names() == {"a", "b", "c"}, "Names"
-    assert letter_friends.connected("d") == set(), "Non connected name"
-    assert letter_friends.connected("a") == {"b", "c"}, "Connected name"
+#   assert letter_friends.add({"c", "d"}) is True, "Add"
+#   assert letter_friends.add({"c", "d"}) is False, "Add again"
+#   assert letter_friends.remove({"c", "d"}) is True, "Remove"
+#   assert digit_friends.remove({"c", "d"}) is False, "Remove non exists"
+#   assert letter_friends.names() == {"a", "b", "c"}, "Names"
+#   assert letter_friends.connected("d") == set(), "Non connected name"
+#   assert letter_friends.connected("a") == {"b", "c"}, "Connected name"
+
