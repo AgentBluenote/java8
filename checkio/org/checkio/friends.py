@@ -2,8 +2,12 @@
 Created on Oct 17, 2015
 
 @author: Michael
-'''
 
+What I learned.  I think I should have used a set as internal data struct
+                 since one requirment was not to have duplicate elements which is
+                 a property of the set() data structure.
+
+'''
 class Friends():  
     def __init__(self, connections):
         # instance variable that is a list of unique sets
