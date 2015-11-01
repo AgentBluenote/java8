@@ -10,13 +10,18 @@ class Friends():
         self.m_connections = []  
 
         # create list of unique sets
-        for i in connections:
-            if self.m_connections.count(i) == 0: # not in member list 
-                self.m_connections.append(i)
+#       for i in connections:
+#           if i not in self.m_connections: # not in member list 
+#               self.m_connections.append(i)
+                
+        # implement a list comprehention
+        [self.m_connections.append(i) for i in connections if i not in self.m_connections]
+        print(self.m_connections)
 
     def add(self, connection):
         # add to internal list if not there 
-        if self.m_connections.count(connection) == 0:  
+#       if self.m_connections.count(connection) == 0:  
+        if connection not in self.m_connections:  
             self.m_connections.append(connection)
             return True
         else:
@@ -24,6 +29,7 @@ class Friends():
 
     def remove(self, connection):
         # remove from internal list if it exists. 
+        
         try:
             # remove() raises exception if not there. 
             if self.m_connections.remove(connection) == None:
@@ -66,4 +72,6 @@ if __name__ == '__main__':
     assert letter_friends.names() == {"a", "b", "c"}, "Names"
     assert letter_friends.connected("d") == set(), "Non connected name"
     assert letter_friends.connected("a") == {"b", "c"}, "Connected name"
+    
+    print("passed all assert tests")
 
