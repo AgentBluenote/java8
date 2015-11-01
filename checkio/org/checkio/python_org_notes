@@ -1,4 +1,127 @@
 
+python interpreter:
+    python [-bBdEhiIOqsSuvVWx?] [-c command | -m module-name | script | - ] [args]
+    
+    // python -m module can run a module without a main (  is this correct? )
+    // exit intereter by cntr-Z(windows )   cntr-D ( unix ) 
+    
+    python -mtimeit -s 'setup here' 'benchmarked code here'
+    python -mtimeit -h # for details
+
+
+
+negetive indexing:
+    word[-2]  # second-last character
+
+slices:  ( mike, important ) 
+    word[:2]  # character from the beginning to position 2 (excluded)
+    word[4:]  # characters from position 4 (included) to the end
+    word[-2:] # characters from the second-last (included) to the end
+    
+   
+ cool functions:
+ [:]
+ range() // use if you want numbers and then you can index
+ 
+ enumberate() // 
+ 
+ We say such an object is iterable, that is, suitable as a target for functions and constructs that expect something from which they can obtain successive items until the supply is exhausted. We have seen that the for statement is such an iterator. The function list() is another; it creates lists from iterables:
+ 
+ // python supports default values and keyword arguments
+ def ask_ok(prompt, retries=4, complaint='Yes or no, please!'):
+    
+
+literal
+identifier
+containers
+iterator
+sequence - An iterable which supports efficient element access using integer indices
+
+
+Data Structures:
+
+    list ( mutable )
+        ie.  letters[2:5] = ['C', 'D', 'E']
+        ie.  support slicing: letters[2:5] = ['C', 'D', 'E']
+
+    tuple - ( immutable but can contain mutable data )
+    dictionary 
+    sets
+
+How to document a function:
+>>> def my_function():
+...     """Do nothing, but document it.    #  must start with a Capital and end with period.
+...                                        #  must be blank
+...     No, really, it doesn't do anything.
+...     """
+
+* arguments are passed using call by value (where the value is always an object reference, not the value of the object).
+
+*  I guess functions don't have to return a value.
+   functions without a return statement do return a value, albeit a rather boring one. 
+   This value is called None (it’s a built-in name)
+
+
+
+
+
+
+
+
+
+
+
+comprehension:
+
+Generators:
+ are a simple and powerful tool for creating iterators. 
+They are written like regular functions but use the yield statement whenever they want to return data. 
+Each time next() is called on it, the generator resumes where it left off (it remembers all the data values 
+and which statement was last executed). An example shows that generators can be trivially easy to create:
+
+
+// generator definition
+def reverse(data):
+    for index in range(len(data)-1, -1, -1):
+        yield data[index]
+        
+// generator in action
+for char in reverse('golf'):
+...     print(char)        
+
+Some simple generators can be coded succinctly as expressions using a syntax similar to list comprehensions but 
+with parentheses instead of brackets.
+
+ie. sum(i*i for i in range(10))o
+
+Another key feature is that the local variables and execution state are automatically saved between calls. 
+
+* Python supports multple assignments
+a, b = 0, 1
+
+
+Strings:
+
+If you don’t want characters prefaced by \ to be interpreted as special characters, 
+you can use raw strings by adding an r before the first quote:
+
+// ie. print(r'C:\some\name')  # note the r before the quote
+
+// String literals can span multiple lines. One way is using triple-quotes: """...""" or '''...'''.
+// '' or "" only handle one line 
+
+* there is no char type,  simply a string with length of one.
+
+If you need to modify the sequence you are iterating over while inside the loop (for example to duplicate selected items), 
+it is recommended that you first make a copy. Iterating over a sequence does not implicitly make a copy. 
+The slice notation makes this especially convenient:
+
+
+
+
+
+    
+
 
 
 
