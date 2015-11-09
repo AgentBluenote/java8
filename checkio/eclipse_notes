@@ -1,0 +1,24 @@
+cntrll - shift L  - shows all shortcups
+cntrl-m  - make tab full screen
+
+
+git:
+
+*  you always work with branches,  anything in the master is always deployable.
+* your branch name sould be descriptive ( ie. user-content-cache-key ) 
+
+* Pull request - initiates dicusion about your commits:
+		* user when you want someone to review your work
+		* user when you need help
+		* start peer review
+		
+* mike, looks like there is a couple different models:
+		* Fork and Pull
+		* Shared Repository
+		
+* you can deploy your changes to verify them in production. 
+  If your branch causes issues, you can roll it back by deploying 
+  the existing master into production.
+  
+* once changes have been verified in production its time to merge your
+  code into master branch.
