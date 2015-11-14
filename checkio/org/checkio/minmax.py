@@ -7,47 +7,29 @@ Created on Nov 4, 2015
 def min(*args, **kwargs):
     """Docstring."""
 
-    print("Inside min()")    
-
     key = kwargs.get("key", None)
-    #   D.get(k[,d]) -> D[k] if k in D, else d.  d defaults to None.
     
-    if key: # has "key" keyword argument 
-        print("keyword arg key =", key )
-    else: # key is None
-        # lets make keyword argument so we can treat logic to find min 
-        # in a generic fasion 
+    # lets make keyword argument so we can treat logic to find min value 
+    # in a generic fasion 
+    if not key: 
         key = lambda x: x 
-        print("NO keyword arg key = ", key)
-
-    print("args = ",  len(args))
 
     if len(args) > 1:   # positional arguments packed in tuple 
         arglist = list(args)
     else:  
         arglist = args[0]  # pull sequence out of tuple
-
+        
     print("arglist = " , arglist)
 
-    minval = key(arglist[0])  # initial value
+    # initial values 
+    index = 0 
+    minval = key(arglist[index])  
+    rv = arglist[index]
 
-    print("minval init = ", minval)
-
-    index = 0
-    rv = arglist[0]
     for i in arglist:   # goes through sequence: could be 1,2,3 or [1,2],[4,5]
-        mapvalue = key(i)
-        print("mapvalue - ", mapvalue)
-
         if key(i) < minval:
             minval = key(i)
             rv = arglist[index]
-            print("rv = 1", rv)
-
-        print("index: ",index)
-        print("i:",i)
-        print("minval = ", minval)
-
         index = index + 1 
 
     return rv
@@ -56,20 +38,12 @@ def min(*args, **kwargs):
 def max(*args, **kwargs):
     """Docstring."""
 
-    print("Inside max()")    
-
     key = kwargs.get("key", None)
-    #   D.get(k[,d]) -> D[k] if k in D, else d.  d defaults to None.
     
-    if key: # has "key" keyword argument 
-        print("keyword arg key =", key )
-    else: # key is None
-        # lets make keyword argument so we can treat logic to find max 
-        # in a generic fasion 
+    # lets make keyword argument so we can treat logic to find min value 
+    # in a generic fasion 
+    if not key: 
         key = lambda x: x 
-        print("NO keyword arg key = ", key)
-
-    print("args = ",  len(args) ) 
 
     if len(args) > 1:   # positional arguments packed in tuple 
         arglist = list(args)
@@ -78,24 +52,15 @@ def max(*args, **kwargs):
 
     print("arglist = " , arglist)
 
-    maxval = key(arglist[0])  # initial value
-
-    print("maxval init = ", maxval)
-
+    # initialize values
     index = 0
-    rv = arglist[0]
-    for i in arglist:   # goes through sequence: could be 1,2,3 or [1,2],[4,5]
-        mapvalue = key(i)
-        print("mapvalue - ", mapvalue)
+    maxval = key(arglist[index])  # initial value
+    rv = arglist[index]
 
+    for i in arglist:   # goes through sequence: could be 1,2,3 or [1,2],[4,5]
         if key(i) > maxval:
             maxval = key(i)
             rv = arglist[index]
-            print("rv = 1", rv)
-
-        print("index: ",index)
-        print("i:",i)
-        print("maxval = ", maxval)
 
         index = index + 1 
 
