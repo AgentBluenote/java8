@@ -3,7 +3,6 @@ Created on Nov 4, 2015
 
 @author: Michael
 '''
-
 def min(*args, **kwargs):
     """Docstring."""
 
@@ -20,17 +19,15 @@ def min(*args, **kwargs):
         arglist = args[0]  # pull sequence out of tuple
         
     print("arglist = " , arglist)
-
+    
     # initial values 
-    index = 0 
-    minval = key(arglist[index])  
-    rv = arglist[index]
+    minval = key(arglist[0])  
+    rv = arglist[0]
 
-    for i in arglist:   # goes through sequence: could be 1,2,3 or [1,2],[4,5]
-        if key(i) < minval:
-            minval = key(i)
-            rv = arglist[index]
-        index = index + 1 
+    for i_dex,el in enumerate(arglist):   # goes through sequence: could be 1,2,3 or [1,2],[4,5]
+        if key(el) < minval:
+            minval = key(el)
+            rv = arglist[i_dex]
 
     return rv
 
@@ -53,39 +50,19 @@ def max(*args, **kwargs):
     print("arglist = " , arglist)
 
     # initialize values
-    index = 0
-    maxval = key(arglist[index])  # initial value
-    rv = arglist[index]
+    maxval = key(arglist[0])  # initial value
+    rv = arglist[0]
 
-    for i in arglist:   # goes through sequence: could be 1,2,3 or [1,2],[4,5]
-        if key(i) > maxval:
-            maxval = key(i)
-            rv = arglist[index]
-
-        index = index + 1 
+    for i_dex,el in enumerate(arglist):   # goes through sequence: could be 1,2,3 or [1,2],[4,5]
+        if key(el) > maxval:
+            maxval = key(el)
+            rv = arglist[i_dex]
 
     return rv
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
     
-    val = max(3,2,5,8,key=int)
-    print("*****************************")
-    print("*****************************")
-    print("*****************************")
-
-    max( [1, 2, 0, 3, 4] )
-    print("*****************************")
-    print("*****************************")
-    print("*****************************")
-    max("hello")
-
-    print("*****************************")
-    print("*****************************")
-    print("*****************************")
-    max( [[1, 2], [3, 4], [9, 0]] )
-
-
     assert max(3, 2) == 3, "Simple case max"
     assert min(3, 2) == 2, "Simple case min"
     assert max([1, 2, 0, 3, 4]) == 4, "From a list"
