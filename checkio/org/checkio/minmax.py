@@ -9,14 +9,16 @@ def min(*args, **kwargs):
     key = kwargs.get("key", None)
     
     # lets make keyword argument so we can treat logic to find min value 
-    # in a generic fasion 
+    # in a generic fashion 
     if not key: 
         key = lambda x: x 
-
+        
+    print(args)    
+        
     if len(args) > 1:   # positional arguments packed in tuple 
         arglist = list(args)
     else:  
-        arglist = args[0]  # pull sequence out of tuple
+        arglist = list(args[0])  # pull sequence out of tuple
         
     print("arglist = " , arglist)
     
@@ -45,7 +47,7 @@ def max(*args, **kwargs):
     if len(args) > 1:   # positional arguments packed in tuple 
         arglist = list(args)
     else:  
-        arglist = args[0]  # pull sequence out of tuple
+        arglist = list(args[0])  # pull sequence out of tuple
 
     print("arglist = " , arglist)
 
@@ -63,6 +65,7 @@ def max(*args, **kwargs):
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
     
+    
     assert max(3, 2) == 3, "Simple case max"
     assert min(3, 2) == 2, "Simple case min"
     assert max([1, 2, 0, 3, 4]) == 4, "From a list"
@@ -70,5 +73,5 @@ if __name__ == '__main__':
     assert max(2.2, 5.6, 5.9, key=int) == 5.6, "Two maximal items"
     assert min([[1, 2], [3, 4], [9, 0]], key=lambda x: x[1]) == [9, 0], "lambda key"
     assert max([[1, 2], [3, 4], [9, 0]], key=lambda x: x[1]) == [3, 4], "lambda key"
-#   assert min(abs(i) for i in range(-10, 10)) == 0, "Generator"
-#   assert max(abs(i) for i in range(-10, 10)) == 10, "Generator"
+    assert min(abs(i) for i in range(-10, 10)) == 0, "Generator"
+    assert max(abs(i) for i in range(-10, 10)) == 10, "Generator"
