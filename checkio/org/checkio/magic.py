@@ -2,75 +2,58 @@
 Created on Nov 27, 2015
 
 @author: Michael
+
+Description:
+   Whatever (object) the checkio function returns 
+   should pass true for every comparison it is subjected to. 
 '''
 import math
 import re
 
-
-#  Whatever (object) the checkio function returns 
-#  should pass true for every comparison it is subjected to. 
-#  Think class that makes everyone happy 
-
-
-class MyClass:
+class WrapperClass:
     '''
     classdocs
     '''
 
-    def __init__(self, param):
+    def __init__(self, value):
         '''
         Constructor
         '''
-        self.param = param
-#       parent = super(MyClass, self).__init__()
-
-        print(self.__str__())
+        self.value = value
         
-    def __ne__(self, param ):
-        print("inside __ne__", param)
-
+    def __ne__(self, value ):
+        print("inside __ne__", value)
         return True
 
-    def __gt__(self, param ):
-        print("inside __gt__", param)
-
+    def __gt__(self, value ):
+        print("inside __gt__", value)
         return True
 
-    def __lt__(self, param ):
-        print("inside __gt__", param)
-
+    def __lt__(self, value ):
+        print("inside __gt__", value)
         return True
         
-    def __ge__(self, param):        
-        print("inside __ge__", param)
-
+    def __ge__(self, value):        
+        print("inside __ge__", value)
         return True
 
-    def __le__(self, param):        
-        print("inside __ge__", param)
-
+    def __le__(self, value):        
+        print("inside __ge__", value)
         return True
 
-    def __eq__(self, param):        
-        print("inside __eq__", param)
-
+    def __eq__(self, value):        
+        print("inside __eq__", value)
         return True
 
 def checkio(anything):
     """
         try to return anything else :)
     """
-    print(type(anything))
-    
-    obj = MyClass(anything)
-    print(type(obj))
+    obj = WrapperClass(anything)
 
     return obj
 
 if __name__ == '__main__':
-
-#   checkio({}) != []
-
 
     assert checkio({}) != [],         'You'
     assert checkio('Hello') < 'World', 'will'
