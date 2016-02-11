@@ -43,6 +43,7 @@ class WrapperClass:
 
     def __eq__(self, value):        
         print("inside __eq__", value)
+        
         return True
 
 def checkio(anything):
@@ -50,6 +51,7 @@ def checkio(anything):
         try to return anything else :)
     """
     obj = WrapperClass(anything)
+    
 
     return obj
 

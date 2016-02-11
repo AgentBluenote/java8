@@ -3,7 +3,8 @@ Created on Nov 4, 2015
 
 @author: Michael
 '''
-def min(*args, **kwargs):
+
+def min(*args, **kwargs):  
     """Docstring."""
 
     key = kwargs.get("key", None)
