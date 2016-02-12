@@ -4,25 +4,32 @@ import java.util.Collection;
 
 import java.lang.Integer;
 
+
+/*  
+ *  Problem Definition:
+ *  Write a generic method to count the number of elements in a collection that have a 
+ *  specific property (for example, odd integers, prime numbers, palindrome<String>).
+ */
 public class CountPropertyOccurence {
-	/*  
-	    Problem Definition:
-	    Write a generic method to count the number of elements in a collection that have a 
-	    specific property (for example, odd integers, prime numbers, palindrome<String>).
-	 */
+
 	private int number_of_occurances = 0;
 
-	// default constructor
+	// default constructor, Mike ,  test to see if you even need one
 	public CountPropertyOccurence() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/*
-	   I defined PropertyTest<T> interface to test for the property in questions. 
-	   Remember, any and every single type can go into a collection spanning different class hierachys 
-	   
-	   --  
+	 * Deefine PropertyTest<T> interface to test for the property in questions. 
+	 * Remember, any and every single type can go into a collection spanning different class hierachies 
 	 */
+    public interface PropertyTest<T> {
+        public boolean test(T obj);
+    }
+
+    //  
+    //  
+    //  
     public static <T> int countPropertyElements(Collection<T> c, PropertyTest<T> property) {
 
         int count = 0;
@@ -32,17 +39,14 @@ public class CountPropertyOccurence {
         return count;
     }
     
-    public interface PropertyTest<T> {
-        public boolean test(T obj);
-    }
 
     // This class is non generic but implements a generic interface
     // This is a concrete class so the interface<T> is paramiterized.
 	//  Mike: Type of nested class which is referred to as a "static nested classes"  not an inner class ( non-static nested class )
-    public static class OddIntegers implements PropertyTest<Integer>
+    public static class OddIntegers_static_class implements PropertyTest<Integer>
     {
     	// constructor
-    	public OddIntegers() {
+    	public OddIntegers_static_class() {
 	    }
 
     	//  test for property
@@ -68,18 +72,17 @@ public class CountPropertyOccurence {
     }
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		int elem_count;
 		
 		// Arrays.asList returns a List<Integers>
 		Collection<Integer> the_collection = Arrays.asList(1,2,3,4,5,6,7,8);
 
-		OddIntegers property = new OddIntegers();
+		OddIntegers_static_class property = new OddIntegers_static_class();
 				
 		elem_count = CountPropertyOccurence.countPropertyElements( the_collection, property );
 
 		System.out.println("the # of elements is: " +  elem_count);
 
 	}
-
 }
