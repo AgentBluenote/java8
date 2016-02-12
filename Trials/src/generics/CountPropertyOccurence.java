@@ -31,6 +31,10 @@ public class CountPropertyOccurence {
                 ++count;
         return count;
     }
+    
+    public interface PropertyTest<T> {
+        public boolean test(T obj);
+    }
 
     // This class is non generic but implements a generic interface
     // This is a concrete class so the interface<T> is paramiterized.
