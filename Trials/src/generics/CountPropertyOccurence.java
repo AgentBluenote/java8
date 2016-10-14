@@ -1,6 +1,7 @@
 // Michael: git test 1
 // Michael: git test 2
 // Michael: git test 3
+// Michael: git test 4
 
 package generics;
 import java.util.Arrays;
