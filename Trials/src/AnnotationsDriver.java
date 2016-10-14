@@ -9,7 +9,6 @@
 
 // Michael 
 // revisiting Generic code 
-// revisiting Generic code 
 // learn @Target, @Retention  ( meta annotations )
 
 
