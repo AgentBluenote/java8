@@ -1,4 +1,4 @@
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
 
 // Mike: This is how you declare annotations
 // Mike: The body of the previous annotation definition contains annotation type element declarations, 
@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @interface ClassPreamble {  // implicitly public:
     String author();   
 	String date();
-	int currentRevision() default 1;       // default parameters
+//	int currentRevision() default 1;       // default parameters
 	String lastModified() default "N/A";
 	String lastModifiedBy() default "N/A";
 	// Note use of array
