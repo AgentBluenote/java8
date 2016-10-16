@@ -11,10 +11,10 @@ import java.lang.annotation.Documented;
 *
 */
 @Documented
-public @interface ClassPreamble {  
+public @interface ClassPreambleAnnotation {  
     String author();        
 	String date();
-//	int currentRevision() default 1;       
+  	int currentRevision() default 1;       
 	String lastModified() default "N/A";    // MIKE: "annotation type elements" can have a default.   
 	String lastModifiedBy() default "N/A";
 	// Note use of array
