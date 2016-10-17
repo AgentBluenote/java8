@@ -13,6 +13,6 @@ import java.lang.annotation.Repeatable;
 public @interface Schedule {
   String dayOfMonth() default "first";
   String dayOfWeek() default "Mon";
-  int hour() default 12;
+  String hour() default "12";
 }
 

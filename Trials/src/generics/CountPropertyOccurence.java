@@ -26,7 +26,7 @@ public class CountPropertyOccurence {
 	/*
 	   I defined PropertyTest<T> interface to test for the property in questions. 
 	   Remember, any and every single type can go into a collection spanning different class hierachys 
-	   
+                                        	   
 	   --  
 	 */
     public static <T> int countPropertyElements(Collection<T> c, PropertyTest<T> property) {

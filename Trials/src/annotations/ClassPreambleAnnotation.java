@@ -1,5 +1,9 @@
 package annotations;
 import java.lang.annotation.Documented;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.lang.annotation.Retention;
+import java.lang.annotation.ElementType;
 
 
 /**
@@ -11,7 +15,11 @@ import java.lang.annotation.Documented;
 *
 */
 @Documented
+@Retention(RetentionPolicy.RUNTIME) // default Retention is RetentionPolicy.CLASS) 
+@Target(ElementType.TYPE) 
 public @interface ClassPreambleAnnotation {  
+	
+	
     String author();        
 	String date();
   	int currentRevision() default 1;       

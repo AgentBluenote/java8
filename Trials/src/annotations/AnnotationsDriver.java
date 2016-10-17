@@ -1,18 +1,31 @@
 package annotations;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Repeatable;
-import java.util.Iterator;
+
+import java.lang.annotation.Annotation;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Target;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.reflect.AnnotatedElement;
 
 /**
  * @author Michael Archam
  *
  */
+@ClassPreambleAnnotation (
+			   author = "Michael A Doe",
+			   date = "3/17/2002",
+			   currentRevision = 6,
+			   lastModified = "4/12/2004",
+			   lastModifiedBy = "Jane Doe",
+			   // Note array notation
+			   reviewers = {"Alice", "Bob", "Cindy"} )
 public class AnnotationsDriver{
 
 	public AnnotationsDriver() {
 		System.out.println("Inside Constructor: AnnotationsDriver \n");
 	}
 
+	/*
 	@ClassPreambleAnnotation (
 			   author = "Michael A Doe",
 			   date = "3/17/2002",
@@ -21,9 +34,24 @@ public class AnnotationsDriver{
 			   lastModifiedBy = "Jane Doe",
 			   // Note array notation
 			   reviewers = {"Alice", "Bob", "Cindy"} )
+			   */
 	public void classPreambleAnnotationTest() {
-		// TODO Auto-generated constructor stub
-		System.out.println("This method is ClassPreambleAnnotationTest");
+
+		System.out.println("** Inside ClassPreambleAnnotationTest()");
+
+		/*
+		 * get class instance. 
+		 */
+		Class<AnnotationsDriver> this_class = AnnotationsDriver.class;
+
+//		AnnotatedElement anno_element = AnnotationsDriver.class; 
+
+		if (this_class.isAnnotationPresent(ClassPreambleAnnotation.class ) ){
+			System.out.println("annotation IS present\n");
+		} 
+		else{
+		System.out.println("annotation NOT present\n");
+		}
 	}
 
 	/**
@@ -33,21 +61,53 @@ public class AnnotationsDriver{
     @Deprecated
 	public void DeprecatedTest() {
 		// TODO Auto-generated constructor stub
-		System.out.println("This method is deprecated");
+		System.out.println("** Inside is DeprecatedTest()");
+	}
+    
+    
+//   
+
+    @Schedule(dayOfMonth="last")
+    @Schedule(dayOfWeek="Fri", hour="23")
+    public void doPeriodicCleanup() { 
+
+		System.out.println("\n");
+		System.out.println("Inside doPeriodicCleanup()\n");
+
+		/*
+		 * get class instance. 
+		 */
+		Class<AnnotationsDriver> this_class = AnnotationsDriver.class;
+
+		AnnotatedElement anno_element = AnnotationsDriver.class; 
+
+		if (this_class.isAnnotationPresent(Schedule.class)){
+			System.out.println("annotation present\n");
+		} 
+		else{
+			System.out.println("annotation NOT present\n");
+			
+		}
+		
+		/*
+		 *  Pull out annotations. 
+		 */
+		Annotation[] annotationsByType = this_class.getAnnotationsByType(Schedules.class);
+	         System.out.print("annotationsByType.length " + annotationsByType.length + "\n");
+		
+		 for (Annotation a  : annotationsByType) {
+	         System.out.print(a+ " ");
+	      }
+
+
 	}
 
-    
-	
-	
-	
 
     // Inner class 
     public class InnerClassIllistration{
 
         public InnerClassIllistration(){
-        	System.out.println("Inside Constructor: InnerClassIllistration \n");
-        	System.out.println("Annotation could not be defined in inner class \n");
-        	System.out.println("  said it had to be a top-level class, interface, or static \n");
+        	System.out.println("\n");
         }
     }	
 	
@@ -58,14 +118,13 @@ public class AnnotationsDriver{
 	public static void main(String[] args) {
 
 		AnnotationsDriver driver  = new AnnotationsDriver();
-//		InnerClassIllistration inner_class  = new InnerClassIllistration();
 		InnerClassIllistration inner_class  = driver.new  InnerClassIllistration();
 
-		driver.DeprecatedTest();
-
 		driver.classPreambleAnnotationTest();
+		driver.DeprecatedTest();
+		driver.doPeriodicCleanup();
 
-		System.out.println("Hello World, I love CSULB");
+		System.out.println("\nHello World, I love CSULB");
 
 	}
 }
