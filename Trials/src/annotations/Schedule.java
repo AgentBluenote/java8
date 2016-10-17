@@ -1,6 +1,10 @@
 package annotations;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /*
 /*	For compatibility reasons, repeating annotations are stored 
@@ -9,6 +13,8 @@ import java.lang.annotation.Repeatable;
  *
  *  In this case the the container annotation is @Schedules
  */
+@Retention(RetentionPolicy.RUNTIME) // default Retention is RetentionPolicy.CLASS) 
+@Target(ElementType.METHOD) 
 @Repeatable(Schedules.class) 
 public @interface Schedule {
   String dayOfMonth() default "first";

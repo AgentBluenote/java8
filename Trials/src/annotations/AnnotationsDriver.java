@@ -1,31 +1,19 @@
 package annotations;
 
 import java.lang.annotation.Annotation;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Method;
 
 /**
  * @author Michael Archam
  *
  */
-@ClassPreambleAnnotation (
-			   author = "Michael A Doe",
-			   date = "3/17/2002",
-			   currentRevision = 6,
-			   lastModified = "4/12/2004",
-			   lastModifiedBy = "Jane Doe",
-			   // Note array notation
-			   reviewers = {"Alice", "Bob", "Cindy"} )
 public class AnnotationsDriver{
 
 	public AnnotationsDriver() {
 		System.out.println("Inside Constructor: AnnotationsDriver \n");
 	}
 
-	/*
 	@ClassPreambleAnnotation (
 			   author = "Michael A Doe",
 			   date = "3/17/2002",
@@ -34,23 +22,42 @@ public class AnnotationsDriver{
 			   lastModifiedBy = "Jane Doe",
 			   // Note array notation
 			   reviewers = {"Alice", "Bob", "Cindy"} )
-			   */
 	public void classPreambleAnnotationTest() {
+		Method method = null;
 
-		System.out.println("** Inside ClassPreambleAnnotationTest()");
-
+		System.out.println("** Inside ClassPreambleAnnotationTest()\n");
+		
 		/*
 		 * get class instance. 
 		 */
 		Class<AnnotationsDriver> this_class = AnnotationsDriver.class;
+		
+		/*
+		 *  Pull out annotated method because @ClassPreamble is defined at method level.  @Target(ElementType.METHOD)    
+		 */
+		try {                
+	        method = this_class.getMethod("classPreambleAnnotationTest");  
+	        System.out.println("method = " + method.toString());        
+	     }
+	     catch(NoSuchMethodException e) {
+	        System.out.println(e.toString());
+	     }
 
-//		AnnotatedElement anno_element = AnnotationsDriver.class; 
+		/*
+		 *  Pull out annotated method because @ClassPreamble is defined at method level.  @Target(ElementType.METHOD)    
+		 */
+		Annotation[] annotations = method.getDeclaredAnnotations();
 
-		if (this_class.isAnnotationPresent(ClassPreambleAnnotation.class ) ){
-			System.out.println("annotation IS present\n");
-		} 
-		else{
-		System.out.println("annotation NOT present\n");
+        System.out.println("annotations.length = " + annotations.length + "\n");        
+
+		for(Annotation annotation : annotations){
+		    if(annotation instanceof ClassPreambleAnnotation){
+		        System.out.println("Annotation found: lets pull out meta-data... ");
+
+		        ClassPreambleAnnotation myAnnotation = (ClassPreambleAnnotation) annotation;
+		        System.out.println("author: " + myAnnotation.author());
+		        System.out.println("date: " + myAnnotation.date() );
+		    }
 		}
 	}
 
@@ -64,15 +71,12 @@ public class AnnotationsDriver{
 		System.out.println("** Inside is DeprecatedTest()");
 	}
     
-    
-//   
-
     @Schedule(dayOfMonth="last")
     @Schedule(dayOfWeek="Fri", hour="23")
     public void doPeriodicCleanup() { 
 
 		System.out.println("\n");
-		System.out.println("Inside doPeriodicCleanup()\n");
+		System.out.println("** Inside doPeriodicCleanup()\n");
 
 		/*
 		 * get class instance. 
@@ -89,15 +93,6 @@ public class AnnotationsDriver{
 			
 		}
 		
-		/*
-		 *  Pull out annotations. 
-		 */
-		Annotation[] annotationsByType = this_class.getAnnotationsByType(Schedules.class);
-	         System.out.print("annotationsByType.length " + annotationsByType.length + "\n");
-		
-		 for (Annotation a  : annotationsByType) {
-	         System.out.print(a+ " ");
-	      }
 
 
 	}
@@ -118,11 +113,15 @@ public class AnnotationsDriver{
 	public static void main(String[] args) {
 
 		AnnotationsDriver driver  = new AnnotationsDriver();
+
 		InnerClassIllistration inner_class  = driver.new  InnerClassIllistration();
 
-		driver.classPreambleAnnotationTest();
-		driver.DeprecatedTest();
+		
+		
+//		driver.DeprecatedTest();
 		driver.doPeriodicCleanup();
+		driver.classPreambleAnnotationTest();
+
 
 		System.out.println("\nHello World, I love CSULB");
 

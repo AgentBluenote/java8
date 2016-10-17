@@ -16,7 +16,7 @@ import java.lang.annotation.ElementType;
 */
 @Documented
 @Retention(RetentionPolicy.RUNTIME) // default Retention is RetentionPolicy.CLASS) 
-@Target(ElementType.TYPE) 
+@Target(ElementType.METHOD) 
 public @interface ClassPreambleAnnotation {  
 	
 	
