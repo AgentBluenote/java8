@@ -1,7 +1,3 @@
-
-
-import java.awt.Image;
-import java.awt.image.ImageObserver;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import annotations.ClassPreambleAnnotation;
@@ -17,6 +13,7 @@ import annotations.ScheduleContainer;
 public class AnnotationsDriver{
 
 	public AnnotationsDriver() {
+		System.out.println("Inside Constructor: AnnotationsDriver \n");
 	}
 
 	@ClassPreambleAnnotation (
@@ -27,6 +24,7 @@ public class AnnotationsDriver{
 			   lastModifiedBy = "Jane Doe",
 			   reviewers = {"Alice", "Bob", "Cindy"} )
 	public void doclassPreambleAnnotationTest() {
+		Method method = null;
 
 		System.out.println("** Inside ClassPreambleAnnotationTest() \n");
 		System.out.println("This method illistrates @Document mete-annotation");
