@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME) // default Retention is RetentionPolicy.CLASS) 
 @Target(ElementType.METHOD) 
-@Repeatable(Schedules.class) 
+@Repeatable(ScheduleContainer.class) 
 public @interface Schedule {
   String dayOfMonth() default "first";
   String dayOfWeek() default "Mon";

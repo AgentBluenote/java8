@@ -20,12 +20,11 @@ public class AnnotationsDriver{
 			   currentRevision = 6,
 			   lastModified = "4/12/2004",
 			   lastModifiedBy = "Jane Doe",
-			   // Note array notation
 			   reviewers = {"Alice", "Bob", "Cindy"} )
-	public void classPreambleAnnotationTest() {
+	public void doclassPreambleAnnotationTest() {
 		Method method = null;
 
-		System.out.println("** Inside ClassPreambleAnnotationTest()\n");
+		System.out.println("** Inside ClassPreambleAnnotationTest() \n");
 		
 		/*
 		 * get class instance. 
@@ -36,8 +35,8 @@ public class AnnotationsDriver{
 		 *  Pull out annotated method because @ClassPreamble is defined at method level.  @Target(ElementType.METHOD)    
 		 */
 		try {                
-	        method = this_class.getMethod("classPreambleAnnotationTest");  
-	        System.out.println("method = " + method.toString());        
+	        method = this_class.getMethod("doclassPreambleAnnotationTest");  
+	        System.out.println("OBJECT: method = " + method.toString());        
 	     }
 	     catch(NoSuchMethodException e) {
 	        System.out.println(e.toString());
@@ -48,15 +47,17 @@ public class AnnotationsDriver{
 		 */
 		Annotation[] annotations = method.getDeclaredAnnotations();
 
-        System.out.println("annotations.length = " + annotations.length + "\n");        
+        System.out.println("OBJECT[]: annotations.length = " + annotations.length + "\n");        
 
 		for(Annotation annotation : annotations){
 		    if(annotation instanceof ClassPreambleAnnotation){
 		        System.out.println("Annotation found: lets pull out meta-data... ");
 
-		        ClassPreambleAnnotation myAnnotation = (ClassPreambleAnnotation) annotation;
-		        System.out.println("author: " + myAnnotation.author());
-		        System.out.println("date: " + myAnnotation.date() );
+		        ClassPreambleAnnotation anno_ClassPreambleAnnotation = (ClassPreambleAnnotation) annotation;
+		        System.out.println("OBJECT: ClassPreambleAnnotation.author()         : " + anno_ClassPreambleAnnotation.author());
+		        System.out.println("OBJECT: ClassPreambleAnnotation.date()           : " + anno_ClassPreambleAnnotation.date());
+		        System.out.println("OBJECT: ClassPreambleAnnotation.currentRevision(): " + anno_ClassPreambleAnnotation.currentRevision());
+		        System.out.println("OBJECT: ClassPreambleAnnotation.lastModified()   : " + anno_ClassPreambleAnnotation.lastModified());
 		    }
 		}
 	}
@@ -66,39 +67,75 @@ public class AnnotationsDriver{
 	 * explanation of why it was deprecated
 	 */
     @Deprecated
-	public void DeprecatedTest() {
+	public void doDeprecatedTest() {
 		// TODO Auto-generated constructor stub
-		System.out.println("** Inside is DeprecatedTest()");
+		System.out.println("** Inside is doDeprecatedTest()\n");
 	}
     
     @Schedule(dayOfMonth="last")
     @Schedule(dayOfWeek="Fri", hour="23")
     public void doPeriodicCleanup() { 
+		Method method = null;
 
-		System.out.println("\n");
-		System.out.println("** Inside doPeriodicCleanup()\n");
-
+		System.out.println("** Insidep doPeriodicCleanup()\n");
+		
 		/*
 		 * get class instance. 
 		 */
 		Class<AnnotationsDriver> this_class = AnnotationsDriver.class;
-
-		AnnotatedElement anno_element = AnnotationsDriver.class; 
-
-		if (this_class.isAnnotationPresent(Schedule.class)){
-			System.out.println("annotation present\n");
-		} 
-		else{
-			System.out.println("annotation NOT present\n");
-			
-		}
 		
+		/*
+		 *  Pull out annotated method because @Schedule is defined at method level.  
+		 *  @Target(ElementType.METHOD)    
+		 */
+		try {                
+	        method = this_class.getMethod("doPeriodicCleanup");  
+	        System.out.println("OBJECT: method = " + method.toString());        
+	     }
+	     catch(NoSuchMethodException e) {
+	        System.out.println(e.toString());
+	     }
 
+		/*
+		 *  get annotations from Method object. 
+		 *  When annotation is marked @Repeatable the Conntainer annotation is returned. 
+		 */
+		Annotation[] annotations = method.getDeclaredAnnotations();
 
+        System.out.println("OBJECT[]: annotations.length = " + annotations.length + "\n");        
+
+		for(Annotation element : annotations){
+			/*
+			 *   Need to check for Container annotation for @Schedule 
+			 *   because it is marked as @Repeatable.  
+			 */
+		    if(element instanceof ScheduleContainer){
+		        System.out.println("@ScheduleContainer found: lets pull out meta-data... ");
+
+		        ScheduleContainer anno_ScheduleContainer = (ScheduleContainer)element;
+
+  			   /*
+			    *   pull values out of the container 
+			    */
+		        Schedule[] value_ScheduleContainer = anno_ScheduleContainer.value(); 
+
+		        System.out.println("OBJECT: value_ScheduleContainer.length: " + value_ScheduleContainer.length );
+
+  			   /*
+			    *   pull values out of the container 
+			    */
+		        for(Schedule index : value_ScheduleContainer){
+		        	Schedule Schedule_element = (Schedule)index;
+
+		        	System.out.println("OBJECT: Schedule_element.dayOfMonth(): " + Schedule_element.dayOfMonth() );
+		        	System.out.println("OBJECT: Schedule_element:dayOfWeek() " + Schedule_element.dayOfWeek() );
+		        	System.out.println("OBJECT: Schedule_element:hour() " + Schedule_element.hour() );
+		        }
+		    }
+		}
 	}
 
-
-    // Inner class 
+    // Inner class  MIKE
     public class InnerClassIllistration{
 
         public InnerClassIllistration(){
@@ -114,13 +151,11 @@ public class AnnotationsDriver{
 
 		AnnotationsDriver driver  = new AnnotationsDriver();
 
-		InnerClassIllistration inner_class  = driver.new  InnerClassIllistration();
+//		InnerClassIllistration inner_class  = driver.new  InnerClassIllistration();
 
-		
-		
-//		driver.DeprecatedTest();
+		driver.doclassPreambleAnnotationTest();
+		driver.doDeprecatedTest();
 		driver.doPeriodicCleanup();
-		driver.classPreambleAnnotationTest();
 
 
 		System.out.println("\nHello World, I love CSULB");
