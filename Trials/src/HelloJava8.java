@@ -19,27 +19,27 @@ import annotations.ScheduleContainer;
    lastModifiedBy = "Jane Doe",
    reviewers = {"Alice", "Bob", "Cindy"} 
    )
-public class AnnotationsDriver{
+public class HelloJava8{
 
-	public AnnotationsDriver() {
-		System.out.println("Inside Constructor: AnnotationsDriver \n");
+	public HelloJava8() {
+		System.out.println("Inside Constructor: HelloJava8 \n");
 	}
 	
-	public void doclassPreambleAnnotationTest() {
+	public void extractPreambleElements() {
 		Method method = null;
 
-		System.out.println("** Inside ClassPreambleAnnotationTest() \n");
+		System.out.println("** Inside extractPreambleElements() \n");
 		
 		/*
 		 * get class instance. 
 		 */
-		Class<AnnotationsDriver> this_class = AnnotationsDriver.class;
+		Class<HelloJava8> this_class = HelloJava8.class;
 		
 		/*
 		 *  Pull out annotated method because @ClassPreamble is defined at method level.  @Target(ElementType.METHOD)    
 		 */
 		try {                
-	        method = this_class.getMethod("doclassPreambleAnnotationTest");  
+	        method = this_class.getMethod("extractPreambleElements");  
 	        System.out.println("OBJECT: method = " + method.toString());        
 	     }
 	     catch(NoSuchMethodException e) {
@@ -68,7 +68,7 @@ public class AnnotationsDriver{
 
 	/**
 	 * @deprecated
-	 * explanation of why it was deprecated 
+	 * I dinn't really like this method so I took the liberty to make is deprecated. 
 	 */
     @Deprecated
 	public void doDeprecatedTest() {
@@ -88,7 +88,7 @@ public class AnnotationsDriver{
 		/*
 		 * get class instance. 
 		 */
-		Class<AnnotationsDriver> this_class = AnnotationsDriver.class;
+		Class<HelloJava8> this_class = HelloJava8.class;
 		
 		/*
 		 *  Pull out annotated method because @Schedule is defined at method level.  
@@ -155,13 +155,13 @@ public class AnnotationsDriver{
 	 */
 	public static void main(String[] args) {
 
-		AnnotationsDriver driver  = new AnnotationsDriver();
+		HelloJava8 java8_driver  = new HelloJava8();
 
-//		InnerClassIllistration inner_class  = driver.new  InnerClassIllistration();
+//		InnerClassIllistration inner_class  = java8_driver.new  InnerClassIllistration();
 
-		driver.doclassPreambleAnnotationTest();
-		driver.doDeprecatedTest();
-		driver.doPeriodicCleanup();
+		java8_driver.extractPreambleElements();
+		java8_driver.doDeprecatedTest();
+		java8_driver.doPeriodicCleanup();
 
 
 		System.out.println("\nHello World, I love CSULB");
