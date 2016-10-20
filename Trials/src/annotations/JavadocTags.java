@@ -6,6 +6,7 @@ import java.awt.image.ImageObserver;
 /**
  * Javadocs - This class is to illistrate what Tags ( ie. @author Michael ) can 
  * go into the commented section that javadoc uses to generate documentation. 
+ * <p>
  * 
  * Looks like HTML tags can be used i.e.:
  * <ul>

@@ -7,18 +7,16 @@ import java.lang.annotation.ElementType;
 
 
 /**
-*  Mike: This is how you declare annotations
-* 
-* @author      Michel AA 
-* @version     %I%, %G%
-* @since       1.0
-*
-*/
+ * 
+ * @author      Michel A
+ * @version     %I%, %G%
+ * @since       1.0
+ *
+ */
 @Documented
 @Retention(RetentionPolicy.RUNTIME) // default Retention is RetentionPolicy.CLASS) 
 @Target(ElementType.METHOD) 
 public @interface ClassPreambleAnnotation {  
-	
 	
     String author();        
 	String date();

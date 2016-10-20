@@ -1,79 +1,48 @@
 
 
+import java.awt.Image;
+import java.awt.image.ImageObserver;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
-
 import annotations.ClassPreambleAnnotation;
 import annotations.Schedule;
 import annotations.ScheduleContainer;
 
 /**
  * @author Michael Archam
+ * @version     %I%, %G%
+ * @since       1.0
  *
  */
 public class AnnotationsDriver{
 
 	public AnnotationsDriver() {
-		System.out.println("Inside Constructor: AnnotationsDriver \n");
 	}
 
 	@ClassPreambleAnnotation (
 			   author = "Michael A Doe",
-			   date = "3/17/2002",
+			   date =   "3/17/2002",
 			   currentRevision = 6,
 			   lastModified = "4/12/2004",
 			   lastModifiedBy = "Jane Doe",
 			   reviewers = {"Alice", "Bob", "Cindy"} )
 	public void doclassPreambleAnnotationTest() {
-		Method method = null;
 
 		System.out.println("** Inside ClassPreambleAnnotationTest() \n");
-		
-		/*
-		 * get class instance. 
-		 */
-		Class<AnnotationsDriver> this_class = AnnotationsDriver.class;
-		
-		/*
-		 *  Pull out annotated method because @ClassPreamble is defined at method level.  @Target(ElementType.METHOD)    
-		 */
-		try {                
-	        method = this_class.getMethod("doclassPreambleAnnotationTest");  
-	        System.out.println("OBJECT: method = " + method.toString());        
-	     }
-	     catch(NoSuchMethodException e) {
-	        System.out.println(e.toString());
-	     }
-
-		/*
-		 *  Pull out annotated method because @ClassPreamble is defined at method level.  @Target(ElementType.METHOD)    
-		 */
-		Annotation[] annotations = method.getDeclaredAnnotations();
-
-        System.out.println("OBJECT[]: annotations.length = " + annotations.length + "\n");        
-
-		for(Annotation annotation : annotations){
-		    if(annotation instanceof ClassPreambleAnnotation){
-		        System.out.println("Annotation found: lets pull out meta-data... ");
-
-		        ClassPreambleAnnotation anno_ClassPreambleAnnotation = (ClassPreambleAnnotation) annotation;
-		        System.out.println("OBJECT: ClassPreambleAnnotation.author()         : " + anno_ClassPreambleAnnotation.author());
-		        System.out.println("OBJECT: ClassPreambleAnnotation.date()           : " + anno_ClassPreambleAnnotation.date());
-		        System.out.println("OBJECT: ClassPreambleAnnotation.currentRevision(): " + anno_ClassPreambleAnnotation.currentRevision());
-		        System.out.println("OBJECT: ClassPreambleAnnotation.lastModified()   : " + anno_ClassPreambleAnnotation.lastModified());
-		    }
-		}
+		System.out.println("This method illistrates @Document mete-annotation");
+		System.out.println("    See docs directory after Project--> Generate Javadoc\n");
 	}
 
 	/**
 	 * @deprecated
-	 * explanation of why it was deprecated
+	 * explanation of why it was deprecated 
 	 */
     @Deprecated
 	public void doDeprecatedTest() {
 		// TODO Auto-generated constructor stub
 		System.out.println("** Inside is doDeprecatedTest()\n");
+		System.out.println("This method illistrates @Deprecated meta-annotation");
+		System.out.println("    See docs directory after Project--> Generate Javadoc\n");
 	}
     
     @Schedule(dayOfMonth="last")
