@@ -36,14 +36,14 @@ public class Java8Driver{
 		/*
 		 * get class instance. 
 		 */
-		Class<Java8Driver> this_class = Java8Driver.class;
+		Class<Java8Driver> klass = Java8Driver.class;
 		
 		/*
 		 *  Pull out annotated method because @ClassPreamble is defined at 
 		 *  method level.  @Target(ElementType.METHOD)    
 		 */
 		try {                
-	        method = this_class.getMethod("extractPreambleElements");  
+	        method = klass.getMethod("extractPreambleElements");  
 	        System.out.println("OBJECT: method = " + method.toString());        
 	     }
 	     catch(NoSuchMethodException e) {
@@ -102,7 +102,7 @@ public class Java8Driver{
     public class CronTab{
 
         public CronTab(){
-        	System.out.println("\n");
+        	System.out.println("Inside CronTab: Constructor\n");
         }
         
         @Schedule(dayOfMonth="last")
