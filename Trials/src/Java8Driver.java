@@ -97,83 +97,84 @@ public class Java8Driver{
 				"    See docs directory after Project--> Generate Javadoc\n");
 	}
     
-    @Schedule(dayOfMonth="last")
-    @Schedule(dayOfWeek="Fri", hour="23")
-    public void doPeriodicCleanup() { 
-		Method method = null;
-
-		System.out.println("** Inside doPeriodicCleanup()\n");
-		
-		/*
-		 * get class instance. 
-		 */
-		Class<Java8Driver> this_class = Java8Driver.class;
-		
-		/*
-		 *  Pull out annotated method because @Schedule is defined at 
-		 *  method level.  @Target(ElementType.METHOD)    
-		 */
-		try {                
-	        method = this_class.getMethod("doPeriodicCleanup");  
-	        System.out.println("OBJECT: method = " + method.toString());        
-	     }
-	     catch(NoSuchMethodException e) {
-	        System.out.println(e.toString());
-	     }
-
-		/*
-		 *  get annotations from Method object. 
-		 *  When annotation is marked @Repeatable the Conntainer annotation 
-		 *  is returned. 
-		 */
-		Annotation[] annotations = method.getDeclaredAnnotations();
-
-        System.out.println("OBJECT[]: annotations.length = " 
-  							+ annotations.length +
-        					" indicated that an \"Annotation Container\" was returned" );
-
-		for(Annotation element : annotations){
-			/*
-			 *   Need to check for Container annotation for @Schedule 
-			 *   because it is marked as @Repeatable.  
-			 */
-		    if(element instanceof ScheduleContainer){
-		        System.out.println(
-		        		"@ScheduleContainer found: lets pull out meta-data... ");
-		        	System.out.println("");
-
-		        ScheduleContainer anno_ScheduleContainer = 
-		        		(ScheduleContainer)element;
-
-  			   /*
-			    *   pull values out of the container 
-			    */
-		        Schedule[] value_ScheduleContainer = anno_ScheduleContainer.value(); 
-
-		        System.out.println("OBJECT: value_ScheduleContainer.length: " + 
-		        					value_ScheduleContainer.length );
-
-  			   /*
-			    *   pull values out of the container 
-			    */
-		        for(Schedule index : value_ScheduleContainer){
-		        	Schedule Schedule_element = (Schedule)index;
-
-		        	System.out.println("OBJECT: Schedule_element.dayOfMonth(): " + Schedule_element.dayOfMonth() );
-		        	System.out.println("OBJECT: Schedule_element:dayOfWeek() " + Schedule_element.dayOfWeek() );
-		        	System.out.println("OBJECT: Schedule_element:hour() " + Schedule_element.hour() );
-		        	System.out.println("");
-		        }
-		    }
-		}
-	}
 
     // Inner class  MIKE
-    public class InnerClassIllistration{
+    public class CronTab{
 
-        public InnerClassIllistration(){
+        public CronTab(){
         	System.out.println("\n");
         }
+        
+        @Schedule(dayOfMonth="last")
+        @Schedule(dayOfWeek="Fri", hour="23")
+        public void doPeriodicCleanup() { 
+    		Method method = null;
+
+    		System.out.println("** Inside doPeriodicCleanup()\n");
+    		
+    		/*
+    		 * get class instance. 
+    		 */
+    		Class<Java8Driver> this_class = Java8Driver.class;
+    		
+    		/*
+    		 *  Pull out annotated method because @Schedule is defined at 
+    		 *  method level.  @Target(ElementType.METHOD)    
+    		 */
+    		try {                
+    	        method = this_class.getMethod("doPeriodicCleanup");  
+    	        System.out.println("OBJECT: method = " + method.toString());        
+    	     }
+    	     catch(NoSuchMethodException e) {
+    	        System.out.println(e.toString());
+    	     }
+
+    		/*
+    		 *  get annotations from Method object. 
+    		 *  When annotation is marked @Repeatable the Conntainer annotation 
+    		 *  is returned. 
+    		 */
+    		Annotation[] annotations = method.getDeclaredAnnotations();
+
+            System.out.println("OBJECT[]: annotations.length = " 
+      							+ annotations.length +
+            					" indicated that an \"Annotation Container\" was returned" );
+
+    		for(Annotation element : annotations){
+    			/*
+    			 *   Need to check for Container annotation for @Schedule 
+    			 *   because it is marked as @Repeatable.  
+    			 */
+    		    if(element instanceof ScheduleContainer){
+    		        System.out.println(
+    		        		"@ScheduleContainer found: lets pull out meta-data... ");
+    		        	System.out.println("");
+
+    		        ScheduleContainer anno_ScheduleContainer = 
+    		        		(ScheduleContainer)element;
+
+      			   /*
+    			    *   pull values out of the container 
+    			    */
+    		        Schedule[] value_ScheduleContainer = anno_ScheduleContainer.value(); 
+
+    		        System.out.println("OBJECT: value_ScheduleContainer.length: " + 
+    		        					value_ScheduleContainer.length );
+
+      			   /*
+    			    *   pull values out of the container 
+    			    */
+    		        for(Schedule index : value_ScheduleContainer){
+    		        	Schedule Schedule_element = (Schedule)index;
+
+    		        	System.out.println("OBJECT: Schedule_element.dayOfMonth(): " + Schedule_element.dayOfMonth() );
+    		        	System.out.println("OBJECT: Schedule_element:dayOfWeek() " + Schedule_element.dayOfWeek() );
+    		        	System.out.println("OBJECT: Schedule_element:hour() " + Schedule_element.hour() );
+    		        	System.out.println("");
+    		        }
+    		    }
+    		}
+    	}
     }	
 	
 
@@ -184,11 +185,10 @@ public class Java8Driver{
 
 		Java8Driver java8_driver  = new Java8Driver();
 
-//		InnerClassIllistration inner_class  = java8_driver.new  InnerClassIllistration();
+		CronTab cron  = java8_driver.new CronTab();
 
 		java8_driver.extractPreambleElements();
 		java8_driver.doDeprecatedTest();
-		java8_driver.doPeriodicCleanup();
 
 
 		System.out.println("\nHello World, I love CSULB");
