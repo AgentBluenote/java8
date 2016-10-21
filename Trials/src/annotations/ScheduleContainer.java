@@ -1,5 +1,6 @@
 package annotations;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -13,8 +14,9 @@ import java.lang.annotation.Target;
  *  this is the container annotation for @Schedule
  */
 
-@Retention(RetentionPolicy.RUNTIME) // default Retention is RetentionPolicy.CLASS) 
+@Documented
 @Target(ElementType.METHOD) 
+@Retention(RetentionPolicy.RUNTIME) // default Retention is RetentionPolicy.CLASS) 
 public @interface ScheduleContainer {
     Schedule[] value();
 }
