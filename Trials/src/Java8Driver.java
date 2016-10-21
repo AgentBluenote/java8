@@ -1,3 +1,6 @@
+//  80 column spaces looks like this: 
+//  AAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEFFFFFFFFFFGGGGGGGGGGHHHHHHHHHH
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import annotations.ClassPreambleAnnotation;
@@ -19,10 +22,10 @@ import annotations.ScheduleContainer;
    lastModifiedBy = "Jane Doe",
    reviewers = {"Alice", "Bob", "Cindy"} 
    )
-public class HelloJava8{
+public class Java8Driver{
 
-	public HelloJava8() {
-		System.out.println("Inside Constructor: HelloJava8 \n");
+	public Java8Driver() {
+		System.out.println("Inside Constructor: Java8Driver \n");
 	}
 	
 	public void extractPreambleElements() {
@@ -33,10 +36,11 @@ public class HelloJava8{
 		/*
 		 * get class instance. 
 		 */
-		Class<HelloJava8> this_class = HelloJava8.class;
+		Class<Java8Driver> this_class = Java8Driver.class;
 		
 		/*
-		 *  Pull out annotated method because @ClassPreamble is defined at method level.  @Target(ElementType.METHOD)    
+		 *  Pull out annotated method because @ClassPreamble is defined at 
+		 *  method level.  @Target(ElementType.METHOD)    
 		 */
 		try {                
 	        method = this_class.getMethod("extractPreambleElements");  
@@ -47,35 +51,50 @@ public class HelloJava8{
 	     }
 
 		/*
-		 *  Pull out annotated method because @ClassPreamble is defined at method level.  @Target(ElementType.METHOD)    
+		 *  Pull out annotated method because @ClassPreamble is defined at 
+		 *  method level.  @Target(ElementType.METHOD)    
 		 */
 		Annotation[] annotations = method.getDeclaredAnnotations();
 
-        System.out.println("OBJECT[]: annotations.length = " + annotations.length + "\n");        
+        System.out.println("OBJECT[]: annotations.length = " + 
+        					annotations.length + "\n");        
 
 		for(Annotation annotation : annotations){
 		    if(annotation instanceof ClassPreambleAnnotation){
-		        System.out.println("Annotation found: lets pull out meta-data... ");
+		        System.out.println(
+		        		"Annotation found: lets pull out meta-data... ");
 
-		        ClassPreambleAnnotation anno_ClassPreambleAnnotation = (ClassPreambleAnnotation) annotation;
-		        System.out.println("OBJECT: ClassPreambleAnnotation.author()         : " + anno_ClassPreambleAnnotation.author());
-		        System.out.println("OBJECT: ClassPreambleAnnotation.date()           : " + anno_ClassPreambleAnnotation.date());
-		        System.out.println("OBJECT: ClassPreambleAnnotation.currentRevision(): " + anno_ClassPreambleAnnotation.currentRevision());
-		        System.out.println("OBJECT: ClassPreambleAnnotation.lastModified()   : " + anno_ClassPreambleAnnotation.lastModified());
+		        ClassPreambleAnnotation anno_ClassPreambleAnnotation = 
+		        		(ClassPreambleAnnotation) annotation;
+		        System.out.println(
+		        		"OBJECT: ClassPreambleAnnotation.author()         : " 
+		        				+ anno_ClassPreambleAnnotation.author());
+		        System.out.println(
+		        		"OBJECT: ClassPreambleAnnotation.date()           : " 
+		        				+ anno_ClassPreambleAnnotation.date());
+		        System.out.println(
+		        		"OBJECT: ClassPreambleAnnotation.currentRevision(): " 
+		        				+ anno_ClassPreambleAnnotation.currentRevision());
+		        System.out.println(
+		        		"OBJECT: ClassPreambleAnnotation.lastModified()   : " 
+		        				+ anno_ClassPreambleAnnotation.lastModified());
 		    }
 		}
 	}
 
 	/**
 	 * @deprecated
-	 * I dinn't really like this method so I took the liberty to make is deprecated. 
+	 * I dinn't really like this method so I took the liberty to make is 
+	 * deprecated. 
 	 */
     @Deprecated
 	public void doDeprecatedTest() {
 		// TODO Auto-generated constructor stub
 		System.out.println("** Inside is doDeprecatedTest()\n");
-		System.out.println("This method illistrates @Deprecated meta-annotation");
-		System.out.println("    See docs directory after Project--> Generate Javadoc\n");
+		System.out.println(
+				"This method illistrates @Deprecated meta-annotation");
+		System.out.println(
+				"    See docs directory after Project--> Generate Javadoc\n");
 	}
     
     @Schedule(dayOfMonth="last")
@@ -83,16 +102,16 @@ public class HelloJava8{
     public void doPeriodicCleanup() { 
 		Method method = null;
 
-		System.out.println("** Insidep doPeriodicCleanup()\n");
+		System.out.println("** Inside doPeriodicCleanup()\n");
 		
 		/*
 		 * get class instance. 
 		 */
-		Class<HelloJava8> this_class = HelloJava8.class;
+		Class<Java8Driver> this_class = Java8Driver.class;
 		
 		/*
-		 *  Pull out annotated method because @Schedule is defined at method level.  
-		 *  @Target(ElementType.METHOD)    
+		 *  Pull out annotated method because @Schedule is defined at 
+		 *  method level.  @Target(ElementType.METHOD)    
 		 */
 		try {                
 	        method = this_class.getMethod("doPeriodicCleanup");  
@@ -104,11 +123,14 @@ public class HelloJava8{
 
 		/*
 		 *  get annotations from Method object. 
-		 *  When annotation is marked @Repeatable the Conntainer annotation is returned. 
+		 *  When annotation is marked @Repeatable the Conntainer annotation 
+		 *  is returned. 
 		 */
 		Annotation[] annotations = method.getDeclaredAnnotations();
 
-        System.out.println("OBJECT[]: annotations.length = " + annotations.length + "\n");        
+        System.out.println("OBJECT[]: annotations.length = " 
+  							+ annotations.length +
+        					" indicated that an \"Annotation Container\" was returned" );
 
 		for(Annotation element : annotations){
 			/*
@@ -116,16 +138,20 @@ public class HelloJava8{
 			 *   because it is marked as @Repeatable.  
 			 */
 		    if(element instanceof ScheduleContainer){
-		        System.out.println("@ScheduleContainer found: lets pull out meta-data... ");
+		        System.out.println(
+		        		"@ScheduleContainer found: lets pull out meta-data... ");
+		        	System.out.println("");
 
-		        ScheduleContainer anno_ScheduleContainer = (ScheduleContainer)element;
+		        ScheduleContainer anno_ScheduleContainer = 
+		        		(ScheduleContainer)element;
 
   			   /*
 			    *   pull values out of the container 
 			    */
 		        Schedule[] value_ScheduleContainer = anno_ScheduleContainer.value(); 
 
-		        System.out.println("OBJECT: value_ScheduleContainer.length: " + value_ScheduleContainer.length );
+		        System.out.println("OBJECT: value_ScheduleContainer.length: " + 
+		        					value_ScheduleContainer.length );
 
   			   /*
 			    *   pull values out of the container 
@@ -136,6 +162,7 @@ public class HelloJava8{
 		        	System.out.println("OBJECT: Schedule_element.dayOfMonth(): " + Schedule_element.dayOfMonth() );
 		        	System.out.println("OBJECT: Schedule_element:dayOfWeek() " + Schedule_element.dayOfWeek() );
 		        	System.out.println("OBJECT: Schedule_element:hour() " + Schedule_element.hour() );
+		        	System.out.println("");
 		        }
 		    }
 		}
@@ -155,7 +182,7 @@ public class HelloJava8{
 	 */
 	public static void main(String[] args) {
 
-		HelloJava8 java8_driver  = new HelloJava8();
+		Java8Driver java8_driver  = new Java8Driver();
 
 //		InnerClassIllistration inner_class  = java8_driver.new  InnerClassIllistration();
 
