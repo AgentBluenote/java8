@@ -13,10 +13,10 @@ import java.lang.annotation.Target;
  *
  *  In this case the the container annotation is @Schedules
  */
-@Retention(RetentionPolicy.RUNTIME) // default Retention is RetentionPolicy.CLASS) 
-@Target(ElementType.METHOD) 
 @Repeatable(ScheduleContainer.class) 
-public @interface Schedule {
+@Retention(RetentionPolicy.RUNTIME)// default Retention is RetentionPolicy.CLASS)  
+@Target(ElementType.METHOD) 
+public @interface Schedule{
   String dayOfMonth() default "first";
   String dayOfWeek() default "Mon";
   String hour() default "12";
