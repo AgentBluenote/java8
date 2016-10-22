@@ -12,22 +12,22 @@ public class CronTab{
         
         @Schedule(dayOfMonth="last")
         @Schedule(dayOfWeek="Fri", hour="23")
-        public void doPeriodicCleanup() { 
+        public void scheduleCronJob() { 
     		Method method = null;
 
-    		System.out.println("** Inside doPeriodicCleanup()\n");
+    		System.out.println("** Inside scheduleCronJob()\n");
     		
     		/*
     		 * get class instance. 
     		 */
-    		Class<Java8Driver> this_class = Java8Driver.class;
+    		Class<CronTab> this_class = CronTab.class;
     		
     		/*
     		 *  Pull out annotated method because @Schedule is defined at 
     		 *  method level.  @Target(ElementType.METHOD)    
     		 */
     		try {                
-    	        method = this_class.getMethod("CronTab.doPeriodicCleanup");  
+    	        method = this_class.getMethod("scheduleCronJob");  
     	        System.out.println("OBJECT: method = " + method.toString());        
     	     }
     	     catch(NoSuchMethodException e) {
@@ -80,5 +80,19 @@ public class CronTab{
     		        }
     		    }
     		}
+    	}
+        /**
+    	 * @deprecated
+    	 * I dinn't really like this method so I took the liberty to make is 
+    	 * deprecated. 
+    	 */
+        @Deprecated
+    	public void scheduleAtJob() {
+    		// TODO Auto-generated constructor stub
+    		System.out.println("** Inside is scheduleAtJob()\n");
+    		System.out.println(
+    				"This method illistrates @Deprecated meta-annotation");
+    		System.out.println(
+    				"    See docs directory after Project--> Generate Javadoc\n");
     	}
     }	
