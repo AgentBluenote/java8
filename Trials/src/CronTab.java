@@ -1,9 +1,18 @@
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+import annotations.ClassPreambleAnnotation;
 import annotations.Schedule;
 import annotations.ScheduleContainer;
 
+@ClassPreambleAnnotation (
+		   author = "Michael A Doe",
+		   date =   "3/17/2002",
+		   currentRevision = 6,
+		   lastModified = "4/12/2004",
+		   lastModifiedBy = "Jane Doe",
+		   reviewers = {"Alice", "Bob", "Cindy"} 
+		   )
 public class CronTab{
 
         public CronTab(){
