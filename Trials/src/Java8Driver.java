@@ -1,51 +1,52 @@
 //  80 column spaces looks like this: 
 //  AAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEFFFFFFFFFFGGGGGGGGGGHHHHHHHHHH
 
-import annotations.ClassPreambleAnnotation;
+import annotations.PreambleAnnotation;
 
 /**
- * @author Michael Archam
+ * @author Michael Doe
  * @version     %I%, %G%
  * @since       1.0
  *
  */
 
-@ClassPreambleAnnotation (
+@PreambleAnnotation (
    author = "Michael A Doe",
-   date =   "3/17/2002",
-   currentRevision = 6,
-   lastModified = "4/12/2004",
-   lastModifiedBy = "Jane Doe",
-   reviewers = {"Alice", "Bob", "Cindy"} 
-   )
+   email =   "michaeldoe@yahoo.com")
 public class Java8Driver{
 
 	public Java8Driver() {
 		System.out.println("Inside Constructor: Java8Driver \n");
     }
+	
+	@PreambleAnnotation (
+			   author = "Michael A Doe",
+			   email =   "emailyahoo.com" )	
+	public void iLoveCSULB(){
+		System.out.println("\nHello World, I love CSULB");
+	}
     
 	/**
 	 * @param args   main argument
 	 */
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
+
    		Java8Driver driver  = new Java8Driver();
    		CronTab cron  = new CronTab();
+ // 	    ClassPreambleAnnotationHelper preamble = new ClassPreambleAnnotationHelper();
 
-   	    ClassPreambleAnnotationHelper2 
-				preamble = new ClassPreambleAnnotationHelper2(driver.getClass());
-
-   	    String el_string = new String("");
 
 //		cron.scheduleAtJob();
 //		cron.scheduleCronJob();
-//		preamble.PreambleElements();
-//		System.out.println("author" +
-//			ClassPreambleAnnotationHelper2.extractAuthor( driver));
 
-		el_string = preamble.extractAuthor( driver.getClass());
-		System.out.println("el_string " + el_string);
+		System.out.println("author: " +
+			PreambleAnnotationHelper.extractAuthor( driver.getClass()));
 
-		System.out.println("\nHello World, I love CSULB");
+		System.out.println("date: " +
+			PreambleAnnotationHelper.extractDate( driver.getClass()));
+
+		driver.iLoveCSULB();
+
 	}
 }
