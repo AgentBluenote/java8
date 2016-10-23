@@ -14,15 +14,15 @@ import java.lang.annotation.ElementType;
  *
  */
 @Documented
-@Target(ElementType.TYPE) 
+@Target( {ElementType.TYPE, ElementType.METHOD } ) 
 @Retention(RetentionPolicy.RUNTIME) // default Retention is RetentionPolicy.CLASS) 
-public @interface ClassPreambleAnnotation {  
+public @interface PreambleAnnotation {  
 	
     String author();        
-	String date();
-  	int currentRevision() default 1;       
-	String lastModified() default "N/A";    // MIKE: "annotation type elements" can have a default.   
-	String lastModifiedBy() default "N/A";
+	String email();
+//  	int currentRevision() default 1;       
+//	String lastModified() default "N/A";    // MIKE: "annotation type elements" can have a default.   
+//	String lastModifiedBy() default "N/A";
 	// Note use of array
-	String[] reviewers();
+//	String[] reviewers();
 }

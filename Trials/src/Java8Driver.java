@@ -2,6 +2,7 @@
 //  AAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEFFFFFFFFFFGGGGGGGGGGHHHHHHHHHH
 
 import annotations.PreambleAnnotation;
+import annotations.Schedule;
 
 /**
  * @author Michael Doe
@@ -11,7 +12,7 @@ import annotations.PreambleAnnotation;
  */
 
 @PreambleAnnotation (
-   author = "Michael A Doe",
+   author = "Michael Doe",
    email =   "michaeldoe@yahoo.com")
 public class Java8Driver{
 
@@ -20,8 +21,9 @@ public class Java8Driver{
     }
 	
 	@PreambleAnnotation (
-			   author = "Michael A Doe",
+			   author = "Jane Doe",
 			   email =   "emailyahoo.com" )	
+	 @Schedule(dayOfMonth="last")
 	public void iLoveCSULB(){
 		System.out.println("\nHello World, I love CSULB");
 	}
@@ -32,21 +34,22 @@ public class Java8Driver{
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
-   		Java8Driver driver  = new Java8Driver();
+ //  		Java8Driver driver  = new Java8Driver();
    		CronTab cron  = new CronTab();
  // 	    ClassPreambleAnnotationHelper preamble = new ClassPreambleAnnotationHelper();
 
 
 //		cron.scheduleAtJob();
-//		cron.scheduleCronJob();
+		cron.scheduleCronJob();
 
-		System.out.println("author: " +
-			PreambleAnnotationHelper.extractAuthor( driver.getClass()));
+//		System.out.println("author: " +
+//			PreambleAnnotationHelper.extractAuthor( driver.getClass()));
+//		String temp =	PreambleAnnotationHelper.extractAuthor( driver.getClass());
 
-		System.out.println("date: " +
-			PreambleAnnotationHelper.extractDate( driver.getClass()));
+//		System.out.println("date: " +
+//			PreambleAnnotationHelper.extractDate( driver.getClass()));
 
-		driver.iLoveCSULB();
+//		driver.iLoveCSULB();
 
 	}
 }

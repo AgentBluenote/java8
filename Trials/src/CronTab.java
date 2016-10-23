@@ -1,17 +1,13 @@
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
-import annotations.ClassPreambleAnnotation;
+import annotations.PreambleAnnotation;
 import annotations.Schedule;
 import annotations.ScheduleContainer;
 
-@ClassPreambleAnnotation (
+@PreambleAnnotation (
 		   author = "Michael A Doe",
-		   date =   "3/17/2002",
-		   currentRevision = 6,
-		   lastModified = "4/12/2004",
-		   lastModifiedBy = "Jane Doe",
-		   reviewers = {"Alice", "Bob", "Cindy"} 
+		   email =   "michaeldoe@yahoo.com"
 		   )
 public class CronTab{
 
@@ -97,7 +93,6 @@ public class CronTab{
     	 */
         @Deprecated
     	public void scheduleAtJob() {
-    		// TODO Auto-generated constructor stub
     		System.out.println("** Inside is scheduleAtJob()\n");
     		System.out.println(
     				"This method illistrates @Deprecated meta-annotation");

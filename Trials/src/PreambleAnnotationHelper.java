@@ -1,101 +1,82 @@
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
 
-import annotations.ClassPreambleAnnotation;
+import annotations.PreambleAnnotation;
 
 /**
- * @author Michael Archam
+ * @author Michael Doe
  * @version     %I%, %G%
  * @since       1.0
  *
  */
-/*
-@ClassPreambleAnnotation (
-   author = "Michael A Doe",
-   date =   "3/17/2002",
-   currentRevision = 6,
-   lastModified = "4/12/2004",
-   lastModifiedBy = "Jane Doe",
-   reviewers = {"Alice", "Bob", "Cindy"} 
-   )
-   */
-public class ClassPreambleAnnotationHelper2{
 
-	public ClassPreambleAnnotationHelper2(Class klass){
-//		System.out.println("** Inside Constructor() \n");
+public class PreambleAnnotationHelper{
+
+	public PreambleAnnotationHelper(){
+		System.out.println("** Inside Constructor() \n");
 	}
 
-	public  String extractAuthor(Class klass) {
+	public static String extractAuthor(Class<?> klass) {
 		String author = null; 
 
-		System.out.println("** Inside extractAuthor() \n");
-		
-		/*
-		 * get class instance. 
-		 */
-//		Class<ClassPreambleAnnotation> klass = ClassPreambleAnnotation.class;
+		System.out.println("** Inside extractAuthor()");
+        System.out.println("klass = " + klass.getName() + "\n");        
 		
 		Annotation[] annotations = klass.getDeclaredAnnotations();
-
-        System.out.println("OBJECT[]: annotations.length = " + 
+		
+        System.out.println("VARIABLE[]: annotations.length = " + 
         					annotations.length + "\n");        
+        
+
+        // MIKE, how to find the type of annotation and not use "instanceof"
 
 		for(Annotation element : annotations){
-		    if(element instanceof ClassPreambleAnnotation){
+
+		    if(element instanceof PreambleAnnotation){
 		        System.out.println(
 		        		"Annotation found: lets pull out meta-data... ");
 
-		        /*
-		         * MIKE:  I have to cast here because I did not make the 
-		         *        annotation Generic.
-		         */
-		        ClassPreambleAnnotation anno_ClassPreambleAnnotation = 
-		        		(ClassPreambleAnnotation) element;
+		        PreambleAnnotation anno_PreambleAnnotation = 
+		        		(PreambleAnnotation) element;
 
-                author = anno_ClassPreambleAnnotation.author();
+                author = anno_PreambleAnnotation.author();
 
 		        System.out.println(
-		        		"OBJECT: ClassPreambleAnnotation.author()           : " 
+		        		"VARIABLE: PreambleAnnotation.author()           : " 
 		        		+ author );
 		    }
 		}
 		return author;
 	}
 
-	public  String extractDate(ClassPreambleAnnotation preamble) {
-		String date = null; 
+	public static String extractDate(Class<?> klass) {
+		String email = null; 
 
-		System.out.println("** Inside ClassPreambleAnnotationHelper2() \n");
-		
-		/*
-		 * get class instance. 
-		 */
-		Class<ClassPreambleAnnotation> klass = ClassPreambleAnnotation.class;
+		System.out.println("** Inside extractDate() method. \n");
 		
 		Annotation[] annotations = klass.getDeclaredAnnotations();
 
-        System.out.println("OBJECT[]: annotations.length = " + 
+
+        System.out.println("VARIABLE[]: annotations.length = " + 
         					annotations.length + "\n");        
 
 		for(Annotation element : annotations){
-		    if(element instanceof ClassPreambleAnnotation){
+
+		    if(element instanceof PreambleAnnotation){
 		        System.out.println(
 		        		"Annotation found: lets pull out meta-data... ");
 
-		        /*
-		         * MIKE:  I have to cast here because I did not make the 
-		         *        annotation Generic.
-		         */
-		        ClassPreambleAnnotation anno_ClassPreambleAnnotation = 
-		        		(ClassPreambleAnnotation) element;
+		        PreambleAnnotation anno_PreambleAnnotation = 
+		        		(PreambleAnnotation) element;
 
-                date = anno_ClassPreambleAnnotation.date();
+                email = anno_PreambleAnnotation.email();
 
 		        System.out.println(
-		        		"OBJECT: ClassPreambleAnnotation.date()           : " 
-		        		+ date );
+		        		"VARIABLE: PreambleAnnotation.email()           : " 
+		        		+ email );
 		    }
 		}
-		return date;
+		return email;
 	}
 }
 
