@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.lang.Integer;
 
-public class Algorithm {
+public class GenericPropertyCount {
 	/*  
 	 *  Problem Definition:
 	 *  
@@ -18,13 +18,12 @@ public class Algorithm {
 	 *  prime numbers<Interger>, palindrome<String>).
 	 */
 
-	// MIKE
-//	public interface PropertyTest<T> {
-//	    public boolean test(T obj);
-//	} 
+	public interface PropertyTest<T> {
+	    public boolean test(T obj);
+	} 
 	
 
-    public <T> int countProperty(Collection<T> c, 
+    public static <T> int countProperty(Collection<T> c, 
     				 	   PropertyTest<T> property) {
         int count = 0;
         for (T elem : c)
@@ -47,13 +46,13 @@ public class Algorithm {
 
     /*
      *   new type 2 
+     *   test for palindrome 
      */
     public class PalindromeTest implements PropertyTest<String>
     {
     	//  test for palindrome 
     	public boolean test(String phrase) 
     	{ 
-//    	    String phrase1 = new String("madam");
     		char[] chararray = phrase.toCharArray();
     		int back_index = chararray.length;
     		boolean retValue = false; 
@@ -65,11 +64,11 @@ public class Algorithm {
   					break;
     			if( elem == chararray[back_index] ){ 
     				retValue = true;
-     			    System.out.println("jit" +  elem);
+     			    System.out.println("elem = " +  elem);
     			}
     			else{
     				retValue = false ;
-     			    System.out.println("false" +  elem);
+//     			    System.out.println("false" +  elem);
      			    break;
     			}
     			--back_index;
@@ -83,28 +82,33 @@ public class Algorithm {
 		// TODO Auto-generated method stub
 		int elem_count;
 				
-		Algorithm myklass = new Algorithm();
+		GenericPropertyCount myklass = new GenericPropertyCount();
 		
 		ArrayList<String> arr = new ArrayList<>();
-		arr.add("ra");
 		arr.add("madam");
-//		arr.add("junkeven");
-//	  	arr.add("junkodd");
+		arr.add("radar");
+		arr.add("junkeven");
+	  	arr.add("junkodd");
 
 
 		Collection<Integer> the_collection = Arrays.asList(1,2,3,4,5,6,7,8);
-		PropertyTest oddint_test = myklass.new OddIntegersTest();
+
+		// MIKE what about "type witness <>" with inner classes
+//		PropertyTest<Integer> oddint_test = myklass.new OddIntegersTest<>();
+
+		PropertyTest<Integer> oddint_test = myklass.new OddIntegersTest();
+
 
 		Collection<String> str_collection = arr;
-		PropertyTest palindrome_test = myklass.new PalindromeTest();
-palindrome_test.test("radar");
+		PropertyTest<String> palindrome_test = myklass.new PalindromeTest();
 
-		elem_count = myklass.countProperty( the_collection, 
+
+		elem_count = GenericPropertyCount.countProperty( the_collection, 
 		  							  oddint_test );
 
 		System.out.println("TEST CASE 1:  the # of elements is: " +  elem_count);
 
-		elem_count = myklass.countProperty( str_collection, 
+		elem_count = GenericPropertyCount.countProperty( str_collection, 
 		  							  palindrome_test );
 
 		System.out.println("TEST CASE 2:  the # of elements is: " +  elem_count);
