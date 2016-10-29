@@ -84,11 +84,11 @@ public class GenericPropertyCount {
 				
 		GenericPropertyCount myklass = new GenericPropertyCount();
 		
-		ArrayList<String> arr = new ArrayList<>();
-		arr.add("madam");
-		arr.add("radar");
-		arr.add("junkeven");
-	  	arr.add("junkodd");
+		ArrayList<String> stringArray = new ArrayList<>();
+		stringArray.add("madam");
+		stringArray.add("radar");
+		stringArray.add("junkeven");
+	  	stringArray.add("junkodd");
 
 
 		Collection<Integer> the_collection = Arrays.asList(1,2,3,4,5,6,7,8);
@@ -99,7 +99,7 @@ public class GenericPropertyCount {
 		PropertyTest<Integer> oddint_test = myklass.new OddIntegersTest();
 
 
-		Collection<String> str_collection = arr;
+//		Collection<String> str_collection = stringArray;
 		PropertyTest<String> palindrome_test = myklass.new PalindromeTest();
 
 
@@ -108,7 +108,7 @@ public class GenericPropertyCount {
 
 		System.out.println("TEST CASE 1:  the # of elements is: " +  elem_count);
 
-		elem_count = GenericPropertyCount.countProperty( str_collection, 
+		elem_count = GenericPropertyCount.countProperty( stringArray, 
 		  							  palindrome_test );
 
 		System.out.println("TEST CASE 2:  the # of elements is: " +  elem_count);

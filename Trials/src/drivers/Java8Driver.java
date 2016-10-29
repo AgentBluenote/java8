@@ -1,6 +1,8 @@
+package drivers;
 //  80 column spaces looks like this: 
 //  AAAAAABBBBBBBBBBCCCCCCCCCCDDDDDDDDDDEEEEEEEEEEFFFFFFFFFFGGGGGGGGGGHHHHHHHHHH
 
+import annotations.CronTab;
 import annotations.PreambleAnnotation;
 import annotations.Schedule;
 
@@ -24,17 +26,20 @@ public class Java8Driver{
 			   author = "Jane Doe",
 			   email =   "emailyahoo.com" )	
 	 @Schedule(dayOfMonth="last")
-	public void iLoveCSULB(){
-		System.out.println("\nHello World, I love CSULB");
+	public String iLoveCSULB(){
+		String retValue = "Hello World, I love CSULB";
+
+		System.out.println(retValue);
+
+		return retValue;
 	}
     
 	/**
 	 * @param args   main argument
 	 */
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
- //  		Java8Driver driver  = new Java8Driver();
+  		Java8Driver driver  = new Java8Driver();
    		CronTab cron  = new CronTab();
  // 	    ClassPreambleAnnotationHelper preamble = new ClassPreambleAnnotationHelper();
 
@@ -49,7 +54,7 @@ public class Java8Driver{
 //		System.out.println("date: " +
 //			PreambleAnnotationHelper.extractDate( driver.getClass()));
 
-//		driver.iLoveCSULB();
+		driver.iLoveCSULB();
 
 	}
 }
