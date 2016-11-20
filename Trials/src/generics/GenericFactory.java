@@ -46,7 +46,7 @@ public class GenericFactory {
 
 			case("String"):
   			    String string1 = new String("String 32");
-  			    String string2 = new String("String 64");
+  			    String string2 = new String("SString 64");
 
 				System.out.println("case: String");	
 
