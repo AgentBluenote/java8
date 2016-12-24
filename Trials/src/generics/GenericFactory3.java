@@ -12,76 +12,55 @@ import java.util.List;
  *      ArrayList<> is Generic 
  *     
  *      Trying two understand how Generics work with polymorphism.. 
+ *      Basically testing "Call by Value, Call by Reference
  */
 public class GenericFactory3 {
 	/*
-	 *  factory method
-	 *  return different types <Integer> <Double> <String>
+	 *   Trying to see if I can populate a list inside a method and make it stick.
+	 *   by in/out parameter instead of return
 	 */
-	public List<T extends Object> factoryMethod( String type, List<T> thelist ){
 
-	//	List<? extends Object> retValue = null;
+	public <T> void factoryMethod( ArrayList<T> thelist ){
+		Class<?> klazz = null;
+		
+		klazz = thelist.getClass();
 
-    	T retValue = null; 
+    	T elementType = null; 
+
 
 		System.out.println("\nTrace: Inside factoryMethod\n");	
 
-		switch( type ){
-			case("Integer"):
-  			    Integer int1 = new Integer(32);
-  			    Integer int2 = new Integer(64);
+		System.out.println("\nTrace: klass = " + klazz);	
+    	
+//    	klazz = elementType.getClass();
 
-				System.out.println("case: Integer");	
-
-				ArrayList<Integer> intBuffer = new ArrayList<>();
-				
-				//null to non-null
-				retValue = intBuffer;
-
-				// collections class has no constructor and static methods
-		        // collections is raw class 
-		        if( Collections.addAll( intBuffer, int1, int2) == true ){
-//		            System.out.println("retValue.length  = " + retValue.size());	
+		// collections class has no constructor and static methods
+        // collections is raw class 
+//		        if( Collections.addAll( intBuffer, int1, int2) == true ){
+		        if( Collections.addAll( thelist, elementType) == true ){
+//		            System.out.println("elementType.length  = " + elementType.size());	
 		        }
-			break;
-			/*
 
-			case("String"):
-  			    String string1 = new String("String 32");
-  			    String string2 = new String("SString 64");
-
-				System.out.println("case: String");	
-
-				ArrayList<String> stringBuffer = new ArrayList<>();
-				
-				//null to non-null
-				retValue = stringBuffer;
-
-				// collections class has no constructor and static methods
-		        // collections is raw class 
-		        if( Collections.addAll( stringBuffer, string1, string2) == true ){
-//		            System.out.println("retValue.length  = " + retValue.size());	
-		        }
-			break;
-
-			default:
-				System.out.println("default");	
-			*/
-		} // switch
-
-		return retValue;
 	}
     
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		GenericFactory2 max = new GenericFactory2();
-		List<?> unknown = null; 
+		GenericFactory3 max = new GenericFactory3();
+
+		ArrayList<?> unknown = null; 
+		Class<?> klass = null;
 //		System.out.println("Trace: inside main()");	
 		
+		unknown = new ArrayList<String>();
+		
+		klass = unknown.getClass();
+		
+		klass.getCanonicalName();
+		System.out.println("mmmm klass");	
 		/*  
 		 *  return ArrayList of Integer type
 		 */ 
-	    unknown = max.factoryMethod( "Integer" );
+	    max.factoryMethod( unknown );
 
         for( int i=0; i < unknown.size(); i++ ){
            System.out.println("unknown[i] = " +  unknown.get(i) );
