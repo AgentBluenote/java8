@@ -8,17 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 import static java.lang.System.out;
 
+
 public class ClassDeclarationSpy {
 
 	public static void main(String... args) {
 		try {
-		    Class<?> c = Class.forName(args[0]);
+// MIKE 		    Class<?> c = Class.forName(args[0]);
+
+//MIKE
+// 		    Class<?> c = Class.forName("java.lang.Integer");
+ 		    Class<?> c = Class.forName("java.lang.Class");
+
+
 		    out.format("Class:%n  %s%n%n", c.getCanonicalName());
 		    out.format("Modifiers:%n  %s%n%n",
 			       Modifier.toString(c.getModifiers()));
 
 		    out.format("Type Parameters:%n");
-		    TypeVariable[] tv = c.getTypeParameters();
+		    TypeVariable<?>[] tv = c.getTypeParameters();
 		    if (tv.length != 0) {
 			out.format("  ");
 			for (TypeVariable t : tv)
