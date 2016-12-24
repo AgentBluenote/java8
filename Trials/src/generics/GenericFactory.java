@@ -34,7 +34,7 @@ public class GenericFactory {
 
 				ArrayList<Integer> intBuffer = new ArrayList<>();
 				
-				//null to non-null
+				//null to non-null reference.
 				retValue = intBuffer;
 
 				// collections class has no constructor and static methods
@@ -97,54 +97,4 @@ public class GenericFactory {
            System.out.println("unknown[i] = " +  unknown.get(i) );
         }
 	}
-
-	
-	//MIKE case 3:
-	
-	/**  
-	 * MIKE: just an example for Integer.java
-	 *       check for "logical equality" 
-	 * 
-     * Compares this object to the specified object.  The result is
-     * {@code true} if and only if the argument is not
-     * {@code null} and is an {@code Integer} object that
-     * contains the same {@code int} value as this object.
-     *
-     * @param   obj   the object to compare with.
-     * @return  {@code true} if the objects are the same;
-     *          {@code false} otherwise.
-    public boolean equals(Object obj) {
-        if (obj instanceof HeapPollution) {
-            return value == ((HeapPollution)obj).intValue();
-        }
-        return false;
-    }
-     */
-    
-    /**
-	 * MIKE: just an example for Integer.java
-	 * 
-     * Returns a hash code for this {@code Integer}.
-     *
-     * @return  a hash code value for this object, equal to the
-     *          primitive {@code int} value represented by this
-     *          {@code Integer} object.
-      @Override
-      public int hashCode() {
-        return Integer.hashCode(value);
-      }
-     */
-
-    /*
-      @Override
-        public static String toString() { 
-      }
-
-     */
-	
-	
-	
-	
-	
-
 }
