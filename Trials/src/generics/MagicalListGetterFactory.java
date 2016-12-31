@@ -1,5 +1,6 @@
 package generics;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,77 +15,60 @@ import java.util.List;
 
 public class MagicalListGetterFactory {
 
-    @SuppressWarnings("rawtypes")
 	public <T> List<T> magicalListGetter(Class<T> klazz) {
-//	    Object actuallyT = new String("mike");
-	    Object actuallyT = null; 
-	    Object actuallyT2 = new Object(); 
+   	    List<T> list = new ArrayList<>(); // allocate memory
+	    T actualType = null; 
+	   
+	    Constructor<T> ctor = null;
 	    
-   	    List<T> list = new ArrayList<>();
+	    try {
+			// MIKE: Class.newInstance()  can be empty ()
+			actualType = klazz.newInstance();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    actualType = klazz.cast(actualType);
+	    
 
-   	    actuallyT = klazz.cast(actuallyT);
+  	    list.add(actualType);
+	    
+	    /*
+	     *  get Constructor
+	     */
+  	    if( actualType == null){
+  	        try {
+    			ctor = klazz.getConstructor( klazz );
+	    		// MIKE: newInstance(Object.. initArgs)  cannot be empty ()
+		    	actualType = ctor.newInstance("mike");
+		    	list.add(actualType);
 
-	    System.out.println("actuallyT =" + actuallyT );	
-
-   	    list.add(klazz.cast(actuallyT));
-
-
-   	    try {
-   	    	    // If default constructor
-   	        list.add(klazz.getConstructor().newInstance()); 
-   	    	Constructor<T> ctor = klazz.getConstructor();
-
-   	    	System.out.println("ctor name" + ctor.getName());
-
-//  	    	actuallyT = ctor.newInstance(klazz);
-   	       actuallyT2 = klazz.newInstance();
-   	    	System.out.println("actuallyT2 =" + actuallyT2 );	
-   	    } 
-   	    catch( Exception e){
-   	    	e.printStackTrace();
-   	    }
-    	
-	    String cName = klazz.getCanonicalName();	
-	    System.out.println("name =" + cName );	
-
-//	    	unknown = Class.forName(klazz.getCanonicalName());
-
-//	    	placeholder = klazz.newInstance();
-
-/*	    if( placeholder instanceof Integer ){
-			System.out.println("Integer");	
-	    }
-	    else{
-			System.out.println("not an Integer");	
-	    }
-*/
+    		} catch (Exception e1) {  
+	    		e1.printStackTrace();
+    		}
+  	    }
+  	    else{
+  	    	System.out.println("Default constructor was created.");	
+  	    }
+	    
 
 	    return list;
 	}
     
     public static void main(String[] args) {
 
+    	List<?> theList = null; 
+
     	MagicalListGetterFactory theFactory = new MagicalListGetterFactory();
 
-    	Integer theInt = new Integer( 8 );
-
-    	List<String> theList = null; 
-    	
-//    	Class<Integer> intBluePrint = Integer.class;
-
-    	
- //   	if (intBluePrint instanceof Class )
-  //  		System.out.println( "Instance of Class\n" );	
-
-
- //   	theList = theFactory.magicalListGetter(theInt.getClass() );
-
     	theList = theFactory.magicalListGetter( String.class );
+//    	theList = theFactory.magicalListGetter( StringBuilder.class );
+//    	theList = theFactory.magicalListGetter( Integer.class );
 
-		System.out.println(theList.size());	
+		System.out.println("sizeOf theList = " + theList.size());	
 
 		System.out.println( theList );	
-
 	}
 }
 	

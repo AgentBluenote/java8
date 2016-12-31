@@ -17,7 +17,10 @@ public class ClassDeclarationSpy {
 
 //MIKE
 // 		    Class<?> c = Class.forName("java.lang.Integer");
- 		    Class<?> c = Class.forName("java.lang.Class");
+// 		    Class<?> c = Class.forName("java.lang.Integer");
+// 		    Class<?> c = Class.forName("java.lang.Class");
+// 		    Class<?> c = Class.forName("java.util.concurrent.ConcurrentNavigableMap");
+ 		    Class<?> c = Class.forName("[Ljava.lang.String;");
 
 
 		    out.format("Class:%n  %s%n%n", c.getCanonicalName());
