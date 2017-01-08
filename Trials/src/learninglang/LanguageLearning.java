@@ -59,42 +59,6 @@ public class LanguageLearning {
 	        }
 	}
 
-	public static void testClassisInstanceMethod(){
-		Animal       catModel =  new Animal();
-		Animal       cat =  new Animal();
-		ClonedAnimal clonedCat = new ClonedAnimal();
-
-		System.out.println("\n** Inside testClassisInstanceMethod\n");
-		
-
-
-		if( clonedCat instanceof Animal )
-			 cat.printAnimalType();
-		if( clonedCat instanceof ClonedAnimal)
-			clonedCat.printAnimalType();
-
-
-
-		/*
-		 *  MIKE:  this is just pulling "Class Blue-Print"
-		 */
-		Class<?> model = catModel.getClass();
-
-		/*
-		 *  MIKE TEST RESULTS:  
-		 *
-		 *  isInstance is the "dynamic equivelant" of the instanceof operator.
-		 *  Look into this to eliminate "switch logic" 
-		 *  Research this a little more...
-	 	 */
-		// parent class
-		if( model.isInstance(cat) )
-			cat.printAnimalType();
-
-		// child class
-		if( model.isInstance(clonedCat) )
-			clonedCat.printAnimalType();
-	}
 
 	public static void main(String[] args) {
 
@@ -104,14 +68,25 @@ public class LanguageLearning {
 		// continue works with labels as well 
 		LanguageLearning.labeledBreaktest();
 		
-		/*
-		 *  Test Class.isInstance() method
-		 */
-		LanguageLearning.testClassisInstanceMethod();
 		
 		
 		
-	}
+	}  // end of main()
 	
+	/*
+	 *   Inner Classes
+	 */
+	
+	class A {
+	   public void show() {
+	      System.out.println("Class A show() function");
+	   }
+	}
+
+	class B extends A {
+	   public void show() {
+	      System.out.println("Class B show() function");
+	   }
+	}
 	
 }
