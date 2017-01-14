@@ -1,0 +1,52 @@
+MIKE:  Action Items
+
+
+1. check out Annotations interface, how does if differ from @
+
+2. Understand Generic Guidlines 
+   Why is createing a Generic Factory hard 
+   1. When instantiating 
+
+   create Generic with ( in, out ) parameters 
+
+
+
+@RunWith(Suite.class)
+@SuiteClasses({
+                MyClassTest.class,
+                MySecondClassTest.class })
+
+How are sub interfaces implemented ?
+
+MIKE:  Egit stuff 
+
+* find out how to rollback changes in git
+* don't work off of master  
+
+
+MIKE:  Eclipse shortcut
+
+* Cntrl + /          // ( show or hide collapese/expands buttons ) 
+* Cntrl + Shift + L  // show all short cuts
+
+* collapse all methods: //  Cntrl + Shift + /
+
+*  How to go backwards in the documentation browser 
+*  How to switch tabs 
+
+
+MIKE:  Vi shortcut
+
+set number
+set nonumber
+
+1. go to column
+
+MIKE:  java Stuff 
+
+*  Where is JAVA_HOME and CLASS_PATH defined.
+*  Find java source for @Repeatable and figure out how it is implemented
+*  What is @jls  ( a tag I say in some javadoc documentation )
+
+
+

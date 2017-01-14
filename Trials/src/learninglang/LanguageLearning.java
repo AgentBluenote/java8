@@ -6,8 +6,13 @@ public class LanguageLearning {
 	public LanguageLearning() {
 		// defualt constructor
 	}
+
+	public LanguageLearning(String classname) {
+
+		System.out.println(classname);
+	}
 	
-	public static void testMaxValueOfInteger(){
+	public void testMaxValueOfInteger(){
 		@SuppressWarnings("unused")
 	    int maxInt = 2147483647;	
 
@@ -25,7 +30,7 @@ public class LanguageLearning {
 		
 	}
 
-	public static void labeledBreaktest(){
+	public void labeledBreaktest(){
 		
 		int[][] arrayOfInts = { 
 	            { 32, 87, 3, 589 },
@@ -58,35 +63,27 @@ public class LanguageLearning {
 	            System.out.println(searchfor + " not in the array");
 	        }
 	}
+	
+	// random block of code to to Constructors
+    {
+         System.out.println("Some Constructor is being Called");
+         System.out.println("This block be called by every constructor..");
+    }
+
+
 
 
 	public static void main(String[] args) {
+		LanguageLearning driver = new LanguageLearning(); 
+		LanguageLearning driver2 = new LanguageLearning("LanguageLearning"); 
 
-		LanguageLearning.testMaxValueOfInteger();
+		driver.testMaxValueOfInteger();
 		
 		// illistates labeled break
 		// continue works with labels as well 
-		LanguageLearning.labeledBreaktest();
-		
-		
-		
+		driver.labeledBreaktest();
 		
 	}  // end of main()
 	
-	/*
-	 *   Inner Classes
-	 */
-	
-	class A {
-	   public void show() {
-	      System.out.println("Class A show() function");
-	   }
-	}
-
-	class B extends A {
-	   public void show() {
-	      System.out.println("Class B show() function");
-	   }
-	}
 	
 }

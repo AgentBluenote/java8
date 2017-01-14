@@ -14,25 +14,43 @@ import java.util.List;
  */
 
 public class MagicalListGetterFactory {
+	String testString = new String("test");
 
 	public <T> List<T> magicalListGetter(Class<T> klazz) {
+		Object holder = null;
+		
    	    List<T> list = new ArrayList<>(); // allocate memory
 	    T actualType = null; 
-	   
 	    Constructor<T> ctor = null;
+	    
+//	    klazz.isInstance(testString);
 	    
 	    try {
 			// MIKE: Class.newInstance()  can be empty ()
 			actualType = klazz.newInstance();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+//	    holder = actualType;
 	    
-	    actualType = klazz.cast(actualType);
+//	    holder = klazz.cast(holder);
+
+	    if( actualType instanceof String){
+  	    	System.out.println("Instance of String");	
+	    }
+	    if( actualType instanceof StringBuilder){
+	    	StringBuilder temp = (StringBuilder)actualType; 
+	    	temp.append("michael");
+  	    	System.out.println("Instance of StringBuilder");	
+	    }
+	    else{
+  	    	System.out.println("Instance of Unknown");	
+	    }
+//	    StringBuilder mike = null; 
+//	    mike.append(j)
+//	    actualType.append("mike");
 	    
 
-  	    list.add(actualType);
 	    
 	    /*
 	     *  get Constructor
@@ -42,7 +60,6 @@ public class MagicalListGetterFactory {
     			ctor = klazz.getConstructor( klazz );
 	    		// MIKE: newInstance(Object.. initArgs)  cannot be empty ()
 		    	actualType = ctor.newInstance("mike");
-		    	list.add(actualType);
 
     		} catch (Exception e1) {  
 	    		e1.printStackTrace();
@@ -51,6 +68,7 @@ public class MagicalListGetterFactory {
   	    else{
   	    	System.out.println("Default constructor was created.");	
   	    }
+    	list.add(actualType);
 	    
 
 	    return list;
@@ -61,14 +79,30 @@ public class MagicalListGetterFactory {
     	List<?> theList = null; 
 
     	MagicalListGetterFactory theFactory = new MagicalListGetterFactory();
-
-    	theList = theFactory.magicalListGetter( String.class );
-//    	theList = theFactory.magicalListGetter( StringBuilder.class );
-//    	theList = theFactory.magicalListGetter( Integer.class );
+    	
+    	theList = theFactory.magicalListGetter( StringBuilder.class );
 
 		System.out.println("sizeOf theList = " + theList.size());	
 
 		System.out.println( theList );	
+
+		System.out.println("sizeOf theList = " + theList.get(0));	
+
+	    if( theList.get(0) instanceof StringBuilder){
+  	    	System.out.println("Instance of StringBuilder");	
+	    }
+
+		
+
+/*
+		Object obj = null;
+		obj = new String("mike");
+
+		if ( obj instanceof String)
+			System.out.println("obj is a String");	
+			*/
+
+
 	}
 }
 	
