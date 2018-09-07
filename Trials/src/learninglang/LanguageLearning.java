@@ -24,6 +24,8 @@ public class LanguageLearning {
 		/*
 		 *  MIKE TEST RESULTS:  
 		 *
+		 *
+		 *
 		 *  maximun value an int can hold is 2**31  
 		 *  java uses one of the 32 bits as a sign bit
 	 	 */
