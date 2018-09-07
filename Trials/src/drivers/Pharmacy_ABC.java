@@ -1,45 +1,38 @@
 package drivers;
 
 import java.lang.*;
-import java.net.HttpURLConnection;
 import java.io.*;
+
 import java.util.Calendar;
 import java.util.Locale;
+
+import java.net.HttpURLConnection;
+
+import java.time.LocalDateTime;
+import java.util.*;
 
 
 //
 //  Client/Server program for the 
 //
+//  Time server for US. 
+//
 //
 public class Pharmacy_ABC {
+	private Date date     = new Date(); 
+	private long the2Poch = 0;  
 
-    // 
-    // default Constructor
-    // 
+    // Default Constructor
 	public Pharmacy_ABC(){
 
 		// 
 		// we will abstract out foreign strains here.
 		// 
 	    System.out.println("Pharmacy_ABC");
-	}
+	    
+	    the2Poch = date.getTime(); 
 
-    //
-    //
-    //
-	public void populate_DB(){ 
-
-	    System.out.println("populate_DB");
-	    System.out.println("We like uppers, downers and women!! ");
-	}
-
-    //
-    //
-    //
-	public void timing(){ 
-    	Locale url = Locale.US; 
-    	Calendar timeStamp = Calendar.getInstance();
-        
+	    System.out.println( the2Poch );
 	}
 
     //
@@ -54,6 +47,23 @@ public class Pharmacy_ABC {
 	    bigPharma.timing();
 	}
 	
+
+    //
+    //
+    //
+	public void populate_DB(){ 
+	    System.out.println("populate_DB");
+	}
+
+    //
+    //
+    //
+	public void timing(){ 
+    	Locale url = Locale.US; 
+    	Calendar timeStamp = Calendar.getInstance();
+        
+	}
+
 	//
     public void serverSide(){
 
