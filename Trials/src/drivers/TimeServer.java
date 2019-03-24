@@ -40,6 +40,7 @@ public class TimeServer {
 		// we will abstract out foreign strains here.
 		// 
 	    System.out.println("Inside TimeServer...");
+	    System.out.println("Inside TimeServer...");
 	    
 	    the2Poch = date.getTime(); 
 
@@ -71,10 +72,6 @@ public class TimeServer {
         Date date = new Date(ourDate);
 
 	    System.out.println( date.getTime() );
-	    System.out.println( date.getTime() );
-	    System.out.println( date.getTime() );
-	    System.out.println( date.getTime() );
-	    
 	}
 
     //
