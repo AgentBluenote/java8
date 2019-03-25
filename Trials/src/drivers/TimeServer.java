@@ -14,64 +14,92 @@ import java.util.GregorianCalendar;
 import java.io.*;
 import java.net.HttpURLConnection;
 
-
 //
 //  Client/Server program for the 
 //
-//  Time server for US. 
+//  Latency for "Hard" Real-Time Requirements  
+//  JSR 1
 //
-public class TimeServer {
+//  
+//  Reverse Calendar 
+//    1.  Calculate the days I got paid.
+//          ( Payday was every other Thurday )
 
+//    2.  We will continue on that schedule for my suplimental income.  
+//        '\@' 
+//      a. same account ( personnal ),  same name! 
+//        
+//    1.  Calculate  
+//    
+public class TimeServer {
+	
 	private Date date     = new Date(); 
 	private long the2Poch = 0;  
 	
-	
 	// milestones dates
+
 	//  03-01-2010 Part A
 	//  11-01-2010 Part B
-	//  03-01-2010 Part C 
-	//  03-01-2010 Part D
-
-//	private Runtime currentRuntime = getRuntime();
-
-    // Default Constructor
-	public TimeServer(){
-		// 
-		// we will abstract out foreign strains here.
-		// 
-	    System.out.println("Inside TimeServer...");
-	    System.out.println("Inside TimeServer...");
-	    
-	    the2Poch = date.getTime(); 
-
-	    System.out.println( the2Poch );
-	}
+	//  03-01-2010 Part C   // includes Travel, curtesy of Pan AM 103 at 10%. 
+	//  03-01-2010 Part D   // slice(R..X)  --> {R,S,T,U,V,W,} [Y,Z  // look AT() documentation for slice();
 
     //
     // main()
     //
 	public static void main( String[] args ) {
 
-	    TimeServer timeInstance = new TimeServer();  
-//	    Class      clazz        = null;
-//	    Runtime    rt =  Runtime.getRuntime(); 
+	    TimeServer timeInstance = null; 
+	    Class<?>   clazz        = null;
+	    Runtime    runtime      = null; 
 
-//	    clazz = rt.getClass();
-//	    System.out.println( clazz.getCanonicalName());
-//	    timeInstance.timing();
+	    timeInstance = new TimeServer();  
 
-//	    timeInstance.printCalendarInfo();
+	    runtime      = Runtime.getRuntime(); 
+
+	    clazz = runtime.getClass();
+
+	    System.out.println( clazz.getCanonicalName());
+	    System.out.println( clazz.getCanonicalName());
+	    System.out.println( clazz.getCanonicalName());
+
+	    timeInstance.timing();
+
+	    timeInstance.printCalendarInfo();
 	    Locale locale = Locale.getDefault();
 
 	    System.out.println( locale.getLanguage());
-	    
-//	    Calender.
-//	    Calender.getInstance();
 
-	    long ourDate = System.currentTimeMillis();
-        Date date = new Date(ourDate);
+	}
 
-	    System.out.println( date.getTime() );
+
+	// 
+	// Defualt Constructor 
+	// 
+	public TimeServer(){
+	    System.out.println("TimeServer()");
+	}
+	
+	
+    // 
+    // Constructor
+    // 
+	public TimeServer( boolean server ){
+
+	    System.out.println("Inside TimeServer...");
+
+ 	    if( server == true ){
+ 	        while(true){
+	            System.out.println( "    " );
+        	    the2Poch = date.getTime(); 
+	            System.out.println( the2Poch );
+	            try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        }
+	    }	
 	}
 
     //
@@ -80,12 +108,17 @@ public class TimeServer {
 	//  every other Thursday. 
     //
 	public void printCalendarInfo(){ 
-
-	    System.out.println("MIke was here..");
-
+//	    System.out.println("MIke was here..");
+	    // 
 	    // get the supported ids for GMT-08:00 (Pacific Standard Time)
+	    // 
 	    String[] ids = TimeZone.getAvailableIDs(-8 * 60 * 60 * 1000);
+
+	    System.out.println("MIke was here.." + "ids.length = " + ids.length);
+
+	    // 
 	    // if no ids were returned, something is wrong. get out.
+	    // 
 	    if (ids.length == 0)
 	        System.exit(0);
 
@@ -123,61 +156,37 @@ public class TimeServer {
 	    System.out.println("MINUTE: " + calendar.get(Calendar.MINUTE));
 	    System.out.println("SECOND: " + calendar.get(Calendar.SECOND));
 	    System.out.println("MILLISECOND: " + calendar.get(Calendar.MILLISECOND));
+
 	    System.out.println("ZONE_OFFSET: "
 	                       + (calendar.get(Calendar.ZONE_OFFSET)/(60*60*1000)));
 	    System.out.println("DST_OFFSET: "
 	                       + (calendar.get(Calendar.DST_OFFSET)/(60*60*1000)));
 
 	    System.out.println("Current Time, with hour reset to 3");
-	    calendar.clear(Calendar.HOUR_OF_DAY); // so doesn't override
-	    calendar.set(Calendar.HOUR, 3);
-	    System.out.println("ERA: " + calendar.get(Calendar.ERA));
-	    System.out.println("YEAR: " + calendar.get(Calendar.YEAR));
-	    System.out.println("MONTH: " + calendar.get(Calendar.MONTH));
-	    System.out.println("WEEK_OF_YEAR: " + calendar.get(Calendar.WEEK_OF_YEAR));
-	    System.out.println("WEEK_OF_MONTH: " + calendar.get(Calendar.WEEK_OF_MONTH));
-	    System.out.println("DATE: " + calendar.get(Calendar.DATE));
-	    System.out.println("DAY_OF_MONTH: " + calendar.get(Calendar.DAY_OF_MONTH));
-	    System.out.println("DAY_OF_YEAR: " + calendar.get(Calendar.DAY_OF_YEAR));
-	    System.out.println("DAY_OF_WEEK: " + calendar.get(Calendar.DAY_OF_WEEK));
-	    System.out.println("DAY_OF_WEEK_IN_MONTH: "
-	                       + calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH));
-	    System.out.println("AM_PM: " + calendar.get(Calendar.AM_PM));
-	    System.out.println("HOUR: " + calendar.get(Calendar.HOUR));
-	    System.out.println("HOUR_OF_DAY: " + calendar.get(Calendar.HOUR_OF_DAY));
-	    System.out.println("MINUTE: " + calendar.get(Calendar.MINUTE));
-	    System.out.println("SECOND: " + calendar.get(Calendar.SECOND));
-	    System.out.println("MILLISECOND: " + calendar.get(Calendar.MILLISECOND));
-	    System.out.println("ZONE_OFFSET: "
-	           + (calendar.get(Calendar.ZONE_OFFSET)/(60*60*1000))); // in hours
-	    System.out.println("DST_OFFSET: "
-	           + (calendar.get(Calendar.DST_OFFSET)/(60*60*1000))); // in hours 
-	    
+
+//	    calendar.clear(Calendar.HOUR_OF_DAY); // so doesn't override
+//	    calendar.set(Calendar.HOUR, 3);
+
 	}
 
-
-    //
-    //
-    //
 	@SuppressWarnings("deprecation")
 	public void ourCalendar(){ 
     	Locale   url = Locale.US; 
     	Calendar calendar  = Calendar.getInstance();
     	
 	    System.out.println( date.toGMTString() );
-	    System.out.println( date.toGMTString() );
 
 	}
 
     //
-    //
+	// timing(){ 
     //
 	public void timing(){ 
-
+	    System.out.println("Inside timing()");
 	}
 
 	//
-	//
+	// serverSide()
 	//
     public void serverSide(){
 //		HttpURLConnection connect = new HttpURLConnection( url );
