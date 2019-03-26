@@ -1,4 +1,4 @@
-package drivers;
+package application;
 
 import java.lang.Runtime;
 import java.time.LocalDateTime;
@@ -17,31 +17,22 @@ import java.net.HttpURLConnection;
 //
 //  Client/Server program for the 
 //
-//  Latency for "Hard" Real-Time Requirements  
-//  JSR 1
+//  JSR 1  Latency for "Hard" Real-Time Requirements  
 //
-//  
 //  Reverse Calendar 
 //    1.  Calculate the days I got paid.
 //          ( Payday was every other Thurday )
 
 //    2.  We will continue on that schedule for my suplimental income.  
-//        '\@' 
 //      a. same account ( personnal ),  same name! 
 //        
-//    1.  Calculate  
 //    
+//        
 public class TimeServer {
 	
 	private Date date     = new Date(); 
 	private long the2Poch = 0;  
-	
-	// milestones dates
 
-	//  03-01-2010 Part A
-	//  11-01-2010 Part B
-	//  03-01-2010 Part C   // includes Travel, curtesy of Pan AM 103 at 10%. 
-	//  03-01-2010 Part D   // slice(R..X)  --> {R,S,T,U,V,W,} [Y,Z  // look AT() documentation for slice();
 
     //
     // main()
@@ -51,24 +42,23 @@ public class TimeServer {
 	    TimeServer timeInstance = null; 
 	    Class<?>   clazz        = null;
 	    Runtime    runtime      = null; 
+	    boolean serverFlag = false ;  
 
-	    timeInstance = new TimeServer();  
+
+	    timeInstance = new TimeServer( serverFlag );  
 
 	    runtime      = Runtime.getRuntime(); 
 
 	    clazz = runtime.getClass();
+	    
 
-	    System.out.println( clazz.getCanonicalName());
-	    System.out.println( clazz.getCanonicalName());
-	    System.out.println( clazz.getCanonicalName());
+//	    System.out.println( clazz.getCanonicalName());
 
 	    timeInstance.timing();
-
 	    timeInstance.printCalendarInfo();
 	    Locale locale = Locale.getDefault();
 
 	    System.out.println( locale.getLanguage());
-
 	}
 
 
@@ -76,7 +66,7 @@ public class TimeServer {
 	// Defualt Constructor 
 	// 
 	public TimeServer(){
-	    System.out.println("TimeServer()");
+	    System.out.println("TimeServer( client )");
 	}
 	
 	
@@ -88,17 +78,23 @@ public class TimeServer {
 	    System.out.println("Inside TimeServer...");
 
  	    if( server == true ){
- 	        while(true){
-	            System.out.println( "    " );
-        	    the2Poch = date.getTime(); 
-	            System.out.println( the2Poch );
+
+            date = new Date(); 
+ 	        while( true ){
+
 	            try {
-					Thread.sleep(1000);
+
+        	        the2Poch = date.getTime(); 
+	                System.out.println( "hello world; the time is now: " + the2Poch );
+	                System.out.println( the2Poch );
+
+					Thread.sleep(1000);  // this is a Handled exception 
+
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					// What do we do here for *this exception? 
 					e.printStackTrace();
 				}
-	        }
+	        } // end of while
 	    }	
 	}
 
@@ -123,31 +119,33 @@ public class TimeServer {
 	        System.exit(0);
 
 	     // begin output
-	    System.out.println("Current Time");
+	    System.out.println("Current Time\n\n" );
 
 	    // create a Pacific Standard Time time zone
 	    SimpleTimeZone pdt = new SimpleTimeZone(-8 * 60 * 60 * 1000, ids[0]);
 
 	    // set up rules for Daylight Saving Time
-	    pdt.setStartRule(Calendar.APRIL, 1, Calendar.SUNDAY, 2 * 60 * 60 * 1000);
-	    pdt.setEndRule(Calendar.OCTOBER, -1, Calendar.SUNDAY, 2 * 60 * 60 * 1000);
+//	    pdt.setStartRule(Calendar.APRIL, 1, Calendar.SUNDAY, 2 * 60 * 60 * 1000);
+//	    pdt.setEndRule(Calendar.OCTOBER, -1, Calendar.SUNDAY, 2 * 60 * 60 * 1000);
 
+	    // 
 	    // create a GregorianCalendar with the Pacific Daylight time zone
 	    // and the current date and time
+	    // 
 	    Calendar calendar = new GregorianCalendar(pdt);
 	    Date trialTime = new Date();
 	    calendar.setTime(trialTime);
 
 	    // print out a bunch of interesting things
-	    System.out.println("ERA: " + calendar.get(Calendar.ERA));
+//	    System.out.println("ERA: " + calendar.get(Calendar.ERA));
 	    System.out.println("YEAR: " + calendar.get(Calendar.YEAR));
 	    System.out.println("MONTH: " + calendar.get(Calendar.MONTH));
-	    System.out.println("WEEK_OF_YEAR: " + calendar.get(Calendar.WEEK_OF_YEAR));
-	    System.out.println("WEEK_OF_MONTH: " + calendar.get(Calendar.WEEK_OF_MONTH));
-	    System.out.println("DATE: " + calendar.get(Calendar.DATE));
-	    System.out.println("DAY_OF_MONTH: " + calendar.get(Calendar.DAY_OF_MONTH));
-	    System.out.println("DAY_OF_YEAR: " + calendar.get(Calendar.DAY_OF_YEAR));
-	    System.out.println("DAY_OF_WEEK: " + calendar.get(Calendar.DAY_OF_WEEK));
+//	    System.out.println("WEEK_OF_YEAR: " + calendar.get(Calendar.WEEK_OF_YEAR));
+//	    System.out.println("WEEK_OF_MONTH: " + calendar.get(Calendar.WEEK_OF_MONTH));
+//	    System.out.println("DATE: " + calendar.get(Calendar.DATE));
+//	    System.out.println("DAY_OF_MONTH: " + calendar.get(Calendar.DAY_OF_MONTH));
+//	    System.out.println("DAY_OF_YEAR: " + calendar.get(Calendar.DAY_OF_YEAR));
+//	    System.out.println("DAY_OF_WEEK: " + calendar.get(Calendar.DAY_OF_WEEK));
 	    System.out.println("DAY_OF_WEEK_IN_MONTH: "
 	                       + calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH));
 	    System.out.println("AM_PM: " + calendar.get(Calendar.AM_PM));
@@ -195,5 +193,11 @@ public class TimeServer {
 }
 
 
+// MIKE errata
 
 
+	// milestones dates
+	//  03-01-2010 Part A
+	//  11-01-2010 Part B
+	//  03-01-2010 Part C   // includes Travel, curtesy of Pan AM 103 at 10%. 
+	//  03-01-2010 Part D   // slice(R..X)  --> {R,S,T,U,V,W,} [Y,Z  // look AT() documentation for slice();

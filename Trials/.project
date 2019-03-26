@@ -20,4 +20,10 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>APISOURCE</name>
+			<value>file:/C:/Users/IHATEALL/Downloads/eclipse-jee-mars-2-win32/eclipse/file:/C:/Users/IHATEALL/Downloads/Mychael/Downloads/jdk-8u201-docs-all/docs/api</value>
+		</variable>
+	</variableList>
 </projectDescription>
