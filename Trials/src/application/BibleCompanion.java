@@ -20,7 +20,7 @@ public class BibleCompanion {
 	// 
 	public BibleCompanion() {
 
-        System.out.println("Method == BibleCompanion()" );
+        System.out.println(" Constructor == BibleCompanion()" );
 	}
 
 	// 
@@ -30,17 +30,19 @@ public class BibleCompanion {
 
         BufferedReader inputStream   = null;
 	    PrintWriter    outputStream  = null;
-	    String buffer = new String();
 	    String sourceFile = null; 
 	    String outFile    = null; 
+	    String buffer     = new String();
 
 
 	    sourceFile = new String( "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
-	                                      "\\SnapshotsNeroLocal\\devEnv\\devAppSpace\\DBFlatFiles\\bibleVerses.txt");
+	                                      "\\SnapshotsNeroLocal\\devEnv\\" +
+	    		                          "devAppSpace\\DBFlatFiles\\bibleVerses.txt");
 
 	    outFile = new String(
 	    		"C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
-	            "\\SnapshotsNeroLocal\\devEnv\\devAppSpace\\DBFlatFiles\\characterOutput.txt"); 
+	              "\\SnapshotsNeroLocal\\devEnv\\" +
+   				  "devAppSpace\\DBFlatFiles\\characterOutput.txt" ); 
         
 	    try{
 	    	// 
@@ -48,17 +50,20 @@ public class BibleCompanion {
 	    	// 
             inputStream = new BufferedReader( new FileReader( sourceFile ));
 
-            outputStream = new PrintWriter( new FileWriter(outFile ));
-            
+	    	// kkk
+	    	// output file
+	    	// 
+            outputStream = new PrintWriter( new FileWriter( outFile ));
             
             inputStream.readLine();
 	        while ((buffer = inputStream.readLine()) != null) {
 
-	            System.out.println("this uses JPA" + buffer);
-	            System.out.println("C:\\Users\\Michael\\devEnv\\devAppSpace\\DBFlatFiles");
+	            System.out.println("this uses JPA " + buffer);
 
 	            outputStream.println("Delimiter::");
-	            outputStream.println(inputStream);
+
+	            outputStream.println(buffer);
+
 	        }
         } 
         catch(Exception e){
