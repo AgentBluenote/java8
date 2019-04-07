@@ -4,70 +4,45 @@ import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
     public class FileProcessing {
-	   private String         m_sourceFile   = null; 
-	   private BufferedReader m_inputStream  = null;
+	   private String         m_inFilePath    = null; 
+	   private String         m_outFilePath   = null; 
+
+	   private BufferedReader m_inputStream   = null;
+       private PrintWriter    m_outputStream  = null;
 
 		// 
-		//  method signature : FileProcessing( String flatFile )
-		//  type             : Contructor 
-		//  scope            : public  
+		//  name :    FileProcessing()
 		// 
 		public FileProcessing() {
-	        System.out.println(" Constructor == FileProcessing()" );
-		}
+
+	        System.out.println( "FileProcessing()" );
+		} 
 
 		// 
-		//  method signature : FileProcessing( String flatFile )
-		//  type             : Contructor 
-		//  scope            : public  
+		//  name :    
 		// 
-	    public FileProcessing( String flatFile ) {
-
-	        System.out.println(" Constructor == FileProcessing( Sring flatFile )" );
-
-	    	m_sourceFile = flatFile;
-
-        } // end of Constructor
-
+        public void setInFilePath( String inFile ) {
+             m_inFilePath = new String( inFile );
+        }
 
 		// 
-		//  method signature : processInputFile( String sourceFile ) 
-		//  type             : method // MIKE 
-		//  scope            : public
+		//  name :    
 		// 
-        public void processInputFile( String sourceFile ) {
-		    int lineCount = 0;
-		    String buffer = new String();
-	        
-		    try{
-		    	// 
-		    	// input file
-		    	// 
-	            m_inputStream = new BufferedReader( new FileReader( sourceFile ));
-	            m_inputStream.readLine();
-	        
-	            do{
-		            System.out.println("line[" + lineCount + "]" + buffer);
-                    lineCount++;
-	            } while ( (buffer = m_inputStream.readLine() ) != null);
+        public void setOutFilePath( String outFile ) {
+             m_outFilePath = new String( outFile );
+        }
 
-	        } 
-	        catch(Exception e){
-		   	    e.printStackTrace();
-		    }
-	    }
 
 		// 
-		//  method signature : processInputFile( String sourceFile ) 
-		//  type             : method // MIKE 
-		//  scope            : public
+		//  method signature : 
 		// 
-        public ArrayList peelLines( String sourceFile ) {
+        public ArrayList peelLines() {
 
-        	ArrayList<StringBuffer> retValue = new ArrayList<StringBuffer>();
+        	ArrayList< StringBuffer > retValue = new ArrayList< StringBuffer >();
 
 		    String buffer = new String();
 	        
@@ -75,7 +50,7 @@ import java.io.PrintWriter;
 		    	// 
 		    	// input file
 		    	// 
-	            m_inputStream = new BufferedReader( new FileReader( sourceFile ));
+	            m_inputStream = new BufferedReader( new FileReader( m_inFilePath ));
 	            m_inputStream.readLine();
 
 		        while ((buffer = m_inputStream.readLine()) != null) {
@@ -92,27 +67,17 @@ import java.io.PrintWriter;
 	    // 
 	    // logic to write to a file 
 	    // 
-	    public static void postLines( String inFile ) {
+	    public void postLines(){
 
-	    	PrintWriter    outputStream  = null;
-	    	
-	    	String outFile = new String("C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
-		                                   "\\devAppSpace\\DBFlatFiles\\characterOutput.txt");
-	    	
-	    	
 	    	 try{
-	 	    	// 
-	 	    	// output file
-	 	    	// 
-	             outputStream = new PrintWriter( new FileWriter( outFile ));
+	             FileWriter filewriter =  new FileWriter( m_outFilePath );
+	 	    	 // 
+	 	    	 // output file
+	 	    	 // 
+	             m_outputStream = new PrintWriter( new FileWriter( m_outFilePath ) );
 	             
-	 //	        while ((buffer = inputStream.readLine()) != null) {
-	// 	            System.out.println("this uses JPA " + buffer);
+	             m_outputStream.println("hello");
 
-	 	            outputStream.println("Delimiter::");
-
-//	 	            outputStream.println(buffer);
-	 	        //}
 	         } 
 	         catch(Exception e){
 	 	   	    e.printStackTrace();
@@ -120,23 +85,33 @@ import java.io.PrintWriter;
 
 	    }
 
-		//
+		//////////////////////////////////////////////////////////////////////////////////////////
+        //
 		// main()  Driver  
-		//
+        //
+		//////////////////////////////////////////////////////////////////////////////////////////
 		public static void main(String[] args) {
 
 			FileProcessing filePro = null;
-		    String         test = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+		    String         infile = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
 		                                   "\\devAppSpace\\DBFlatFiles\\bibleVerses.txt";
 
-		    String         test2 = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+		    String         outfile = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
 		                                   "\\devAppSpace\\DBFlatFiles\\characterOutput.txt";
 
-			filePro = new FileProcessing(test2);
+        	ArrayList< StringBuffer > ar = new ArrayList< StringBuffer >();
 
-			filePro.processInputFile(test2);
-			filePro.postLines(test2);
+			filePro = new FileProcessing( );
+
+//			filePro.setInFilePath(infile);
+				
+			filePro.setOutFilePath(outfile);
+
+//			filePro.peelLines();
+			filePro.postLines();
+
+			ar = filePro.peelLines();
+
+
 		}
-		
-		/* MIKE AI: Volvo T6 */
 }
