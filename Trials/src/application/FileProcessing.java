@@ -42,7 +42,8 @@ import java.io.PrintWriter;
 		// 
         public ArrayList peelLines() {
 
-        	ArrayList< StringBuffer > retValue = new ArrayList< StringBuffer >();
+        	int index = 0;
+        	ArrayList< String > retValue = new ArrayList< String >();
 
 		    String buffer = new String();
 	        
@@ -54,13 +55,16 @@ import java.io.PrintWriter;
 	            m_inputStream.readLine();
 
 		        while ((buffer = m_inputStream.readLine()) != null) {
+		        	retValue.add(buffer);  
+		        	index++;
 
-		            System.out.println("line[1]" + buffer);
+//		            System.out.println("line[" + index + "]"  + buffer);
 		        }
 	        } 
 	        catch(Exception e){
 		   	    e.printStackTrace();
 		    }
+
 		    return retValue;
 	    }
 
@@ -77,12 +81,25 @@ import java.io.PrintWriter;
 	             m_outputStream = new PrintWriter( new FileWriter( m_outFilePath ) );
 	             
 	             m_outputStream.println("hello");
-
 	         } 
 	         catch(Exception e){
 	 	   	    e.printStackTrace();
 	 	    }
 
+	    }
+
+        //
+		// utility function.  
+        //
+	    private void PrintLines( ArrayList<String> input){
+			int j =0;
+			// 
+			// just a check
+			// 
+			j=input.size();
+			for(int index = 0; index< j ; index++ ){
+		      System.out.println("line[" + index + "] is: " + input.get(index) );
+			}
 	    }
 
 		//////////////////////////////////////////////////////////////////////////////////////////
@@ -93,25 +110,22 @@ import java.io.PrintWriter;
 		public static void main(String[] args) {
 
 			FileProcessing filePro = null;
-		    String         infile = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+		    String         infile  = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
 		                                   "\\devAppSpace\\DBFlatFiles\\bibleVerses.txt";
 
 		    String         outfile = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
 		                                   "\\devAppSpace\\DBFlatFiles\\characterOutput.txt";
 
-        	ArrayList< StringBuffer > ar = new ArrayList< StringBuffer >();
+
+        	ArrayList< String > lines = new ArrayList< String >();
 
 			filePro = new FileProcessing( );
-
-//			filePro.setInFilePath(infile);
-				
+			filePro.setInFilePath(infile);
 			filePro.setOutFilePath(outfile);
 
-//			filePro.peelLines();
-			filePro.postLines();
+			lines = filePro.peelLines();
 
-			ar = filePro.peelLines();
-
+		    filePro.PrintLines(lines);	
 
 		}
 }
