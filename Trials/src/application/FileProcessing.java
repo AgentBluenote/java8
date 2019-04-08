@@ -7,12 +7,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-    public class FileProcessing {
+public class FileProcessing {
 	   private String         m_inFilePath    = null; 
 	   private String         m_outFilePath   = null; 
 
 	   private BufferedReader m_inputStream   = null;
        private PrintWriter    m_outputStream  = null;
+
+       private ArrayList<String> m_bufferedLines = null; 
 
 		// 
 		//  name :    FileProcessing()
@@ -40,12 +42,11 @@ import java.io.PrintWriter;
 		// 
 		//  method signature : 
 		// 
-        public ArrayList peelLines() {
-
-        	int index = 0;
-        	ArrayList< String > retValue = new ArrayList< String >();
-
+        public ArrayList parseLines() {
+        	int index  = 0;
 		    String buffer = new String();
+
+        	m_bufferedLines = new ArrayList<String>();
 	        
 		    try{
 		    	// 
@@ -55,17 +56,25 @@ import java.io.PrintWriter;
 	            m_inputStream.readLine();
 
 		        while ((buffer = m_inputStream.readLine()) != null) {
-		        	retValue.add(buffer);  
+		        	m_bufferedLines.add(buffer);  
 		        	index++;
 
-//		            System.out.println("line[" + index + "]"  + buffer);
+//		            System.out.println("DEBUG: line[" + index + "]"  + buffer);
 		        }
 	        } 
 	        catch(Exception e){
 		   	    e.printStackTrace();
 		    }
 
-		    return retValue;
+		    return m_bufferedLines;
+	    }
+
+		// 
+		//  method signature : 
+		// 
+        public ArrayList parseLinesAlphabetic(){
+			java.util.Collections.sort( m_bufferedLines );
+			return m_bufferedLines;
 	    }
 
 	    // 
@@ -85,7 +94,6 @@ import java.io.PrintWriter;
 	         catch(Exception e){
 	 	   	    e.printStackTrace();
 	 	    }
-
 	    }
 
         //
@@ -110,22 +118,32 @@ import java.io.PrintWriter;
 		public static void main(String[] args) {
 
 			FileProcessing filePro = null;
+
+//		    String         infile  = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+//		                                   "\\devAppSpace\\DBFlatFiles\\bibleVerses.txt";
+
 		    String         infile  = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
-		                                   "\\devAppSpace\\DBFlatFiles\\bibleVerses.txt";
+		                                   "\\devAppSpace\\DBFlatFiles\\List_of_Companies.txt"; 
 
 		    String         outfile = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
 		                                   "\\devAppSpace\\DBFlatFiles\\characterOutput.txt";
 
 
-        	ArrayList< String > lines = new ArrayList< String >();
+        	ArrayList<String> lines = new ArrayList<String>();
 
 			filePro = new FileProcessing( );
 			filePro.setInFilePath(infile);
 			filePro.setOutFilePath(outfile);
 
-			lines = filePro.peelLines();
+			lines = filePro.parseLines();
+
+//			lines = filePro.parseLinesAlphabetic()
 
 		    filePro.PrintLines(lines);	
 
 		}
 }
+    
+    // parse XML file
+    // ArrayList returnAlphabetical( 
+

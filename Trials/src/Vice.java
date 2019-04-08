@@ -1,7 +1,7 @@
 import java.util.*;
 import java.lang.*;
 
-public class GangEntity {
+public class Vice {
 	
 	// 
 	// We use gangs to carry out are political message 
@@ -19,7 +19,7 @@ public class GangEntity {
  */
 
     //     GangEntity	
-	public GangEntity() {
+	public Vice() {
 
       System.out.println( "Constructor::GangEntity");
 	}
@@ -31,7 +31,7 @@ public class GangEntity {
 
 	public static void main(String[] args) {
 
-        GangEntity BOD = new GangEntity();
+        Vice BOD = new Vice();
 
 	}
 
@@ -43,15 +43,3 @@ public class GangEntity {
 // 
 // end 
 // 
-
-/*
- *
- * public class Company_level
- * public class Batallian
- * public class Brigade and Blow me..  // I warned you... 
- * public class Division   //
- * public class Core  ...  // as in core dump...  
- * 
- * public class Level1Pro 
- *
- */

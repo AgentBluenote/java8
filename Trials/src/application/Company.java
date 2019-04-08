@@ -3,13 +3,23 @@ package application;
 import java.lang.*;
 import java.io.*;
 
-public class Company {
+
+public class Company{ 
+
     private String companyName = null;
     private String companySlogan = null;
+    private FileProcessing fp = null;
 
 	public Company() {
+
 	}
 
+	
+	///////////////////////////////////////////////////////////////////////////////// 
+	// 
+	///////////////////////////////////////////////////////////////////////////////// 
+
+	// Setter Methods
 	public void setName( String name ){
          companyName = new String(name); 
 	}
@@ -18,12 +28,14 @@ public class Company {
          companySlogan = new String(slogan); 
 	}
 
-	public void printName(){
+	// Getter Methods
+	public void getName(){
          System.out.println( companyName );
 	}
 
-	public void printSlogan(){
+	public void getSlogan(){
          System.out.println( companySlogan );
 	}
-
 }
+
+
