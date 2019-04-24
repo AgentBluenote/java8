@@ -24,11 +24,25 @@ public class FileProcessing {
 	        System.out.println( "FileProcessing()" );
 		} 
 
+
+		public void  systemCall() {
+			Process run = null;
+
+	        try {
+				run = Runtime.getRuntime().exec("ls");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+
 		// 
 		//  name :    
 		// 
         public void setInFilePath( String inFile ) {
              m_inFilePath = new String( inFile );
+             System.out.println(m_inFilePath); 
         }
 
 		// 
@@ -43,7 +57,7 @@ public class FileProcessing {
 		//  method signature : 
 		// 
         public ArrayList parseLines() {
-        	int index  = 0;
+        	int index     = 0;
 		    String buffer = new String();
 
         	m_bufferedLines = new ArrayList<String>();
@@ -52,6 +66,8 @@ public class FileProcessing {
 		    	// 
 		    	// input file
 		    	// 
+		    	System.out.println( m_inFilePath );
+
 	            m_inputStream = new BufferedReader( new FileReader( m_inFilePath ));
 	            m_inputStream.readLine();
 
@@ -74,6 +90,9 @@ public class FileProcessing {
 		// 
         public ArrayList parseLinesAlphabetic(){
 			java.util.Collections.sort( m_bufferedLines );
+			for(String i : m_bufferedLines ) {
+				   System.out.println("where is my C++ book?" + i);
+			}
 			return m_bufferedLines;
 	    }
 
@@ -122,24 +141,38 @@ public class FileProcessing {
 //		    String         infile  = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
 //		                                   "\\devAppSpace\\DBFlatFiles\\bibleVerses.txt";
 
-		    String         infile  = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
-		                                   "\\devAppSpace\\DBFlatFiles\\List_of_Companies.txt"; 
+//		    String         infile  = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+//		                                   "\\devAppSpace\\DBFlatFiles\\List_of_Companies.txt"; 
 
-		    String         outfile = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
-		                                   "\\devAppSpace\\DBFlatFiles\\characterOutput.txt";
+//		    String         outfile = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+//		                                   "\\devAppSpace\\DBFlatFiles\\characterOutput.txt";
+
+		    String         hitlist = "/home/michael/Project/devAppSpace/DBFlatFiles/List_of_Companies.txt";
+		    String         outfile = "/home/michael/Project/devAppSpace/DBFlatFiles/characterOutput.txt";
+
+		    try {
+
+				Runtime.getRuntime().exec("pwd");
+
+			} catch (IOException e) {
+
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 
         	ArrayList<String> lines = new ArrayList<String>();
 
 			filePro = new FileProcessing( );
-			filePro.setInFilePath(infile);
+
+			filePro.setInFilePath( hitlist );
 			filePro.setOutFilePath(outfile);
 
 			lines = filePro.parseLines();
 
-//			lines = filePro.parseLinesAlphabetic()
+			lines = filePro.parseLinesAlphabetic();
 
-		    filePro.PrintLines(lines);	
+//		    filePro.PrintLines(lines);	
 
 		}
 }
