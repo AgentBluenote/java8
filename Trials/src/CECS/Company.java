@@ -1,4 +1,4 @@
-package application;
+package CECS;
 
 import java.lang.*;
 import java.io.*;

@@ -1,4 +1,4 @@
-package application;
+package CECS;
 
 public class KeyGrip54 {
 

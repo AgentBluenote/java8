@@ -1,11 +1,12 @@
-package application;
+package CECS;
 
 import java.util.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+//import java.io.BufferedReader;
+//import java.io.FileReader;
+//import java.io.FileWriter;
+//import java.io.IOException;
+//import java.io.PrintWriter;
 
 public class FileProcessing {
 	   private String         m_inFilePath    = null; 
@@ -13,6 +14,8 @@ public class FileProcessing {
 
 	   private BufferedReader m_inputStream   = null;
        private PrintWriter    m_outputStream  = null;
+
+       private File file      = null; 
 
        private ArrayList<String> m_bufferedLines = null; 
 
@@ -49,6 +52,7 @@ public class FileProcessing {
 		//  name :    
 		// 
         public void setOutFilePath( String outFile ) {
+
              m_outFilePath = new String( outFile );
         }
 
@@ -75,7 +79,7 @@ public class FileProcessing {
 		        	m_bufferedLines.add(buffer);  
 		        	index++;
 
-//		            System.out.println("DEBUG: line[" + index + "]"  + buffer);
+		            System.out.println("DEBUG: line[" + index + "]"  + buffer);
 		        }
 	        } 
 	        catch(Exception e){
@@ -90,29 +94,20 @@ public class FileProcessing {
 		// 
         public ArrayList parseLinesAlphabetic(){
 			java.util.Collections.sort( m_bufferedLines );
+
+			// foreach loop  MIKE
 			for(String i : m_bufferedLines ) {
 				   System.out.println("where is my C++ book?" + i);
 			}
+
 			return m_bufferedLines;
 	    }
 
 	    // 
-	    // logic to write to a file 
+	    // logic to write to a file MIKE 
 	    // 
-	    public void postLines(){
+	    public void postLines( String content ){
 
-	    	 try{
-	             FileWriter filewriter =  new FileWriter( m_outFilePath );
-	 	    	 // 
-	 	    	 // output file
-	 	    	 // 
-	             m_outputStream = new PrintWriter( new FileWriter( m_outFilePath ) );
-	             
-	             m_outputStream.println("hello");
-	         } 
-	         catch(Exception e){
-	 	   	    e.printStackTrace();
-	 	    }
 	    }
 
         //
@@ -147,7 +142,8 @@ public class FileProcessing {
 //		    String         outfile = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
 //		                                   "\\devAppSpace\\DBFlatFiles\\characterOutput.txt";
 
-		    String         hitlist = "/home/michael/Project/devAppSpace/DBFlatFiles/List_of_Companies.txt";
+		    String         infile = "/home/michael/Project/devAppSpace/DBFlatFiles/List_of_Companies.txt";
+
 		    String         outfile = "/home/michael/Project/devAppSpace/DBFlatFiles/characterOutput.txt";
 
 		    try {
@@ -165,12 +161,17 @@ public class FileProcessing {
 
 			filePro = new FileProcessing( );
 
-			filePro.setInFilePath( hitlist );
+			filePro.setInFilePath( infile );
+
 			filePro.setOutFilePath(outfile);
 
 			lines = filePro.parseLines();
 
-			lines = filePro.parseLinesAlphabetic();
+//			lines = filePro.parseLinesAlphabetic();
+
+			filePro.postLines("We believe it to be the work of \"the SpinManster\"");
+			filePro.postLines("who compromised the csulb GRID back in 1999" );
+//kkk			filePro.postLines("He's been running shit since then." );
 
 //		    filePro.PrintLines(lines);	
 
