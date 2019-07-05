@@ -1,24 +1,28 @@
-package CECS;
+package CECSold;
 
 import java.util.*;
 import java.io.*;
+//import java.io.BufferedReader;
+//import java.io.FileReader;
+//import java.io.FileWriter;
+//import java.io.IOException;
+//import java.io.PrintWriter;
 
 public class FileProcessing {
+	   private String         m_inFilePath    = null; 
+	   private String         m_outFilePath   = null; 
 
-   private String         m_inFilePath    = null; 
-   private String         m_outFilePath   = null; 
+	   private BufferedReader m_inputStream   = null;
+       private PrintWriter    m_outputStream  = null;
 
-   private BufferedReader m_inputStream   = null;
-   private PrintWriter    m_outputStream  = null;
+       private File file      = null; 
 
-   private File file      = null; 
+       private ArrayList<String> m_bufferedLines = null; 
 
-   private ArrayList<String> m_bufferedLines = null; 
-
-// 
-//  name :    FileProcessing()
-// 
-    public FileProcessing() {
+		// 
+		//  name :    FileProcessing()
+		// 
+		public FileProcessing() {
 
 	        System.out.println( "FileProcessing()" );
 		} 
@@ -34,6 +38,7 @@ public class FileProcessing {
 			}
 
 		}
+
 
 		// 
 		//  name :    
@@ -119,22 +124,27 @@ public class FileProcessing {
 			}
 	    }
 
-//////////////////////////////////////////////////////////////////////////////////////////
-//
-// main()  Driver  
-//
-//////////////////////////////////////////////////////////////////////////////////////////
-		@SuppressWarnings("unchecked")
+		//////////////////////////////////////////////////////////////////////////////////////////
+        //
+		// main()  Driver  
+        //
+		//////////////////////////////////////////////////////////////////////////////////////////
 		public static void main(String[] args) {
 
 			FileProcessing filePro = null;
 
+//		    String         infile  = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+//		                                   "\\devAppSpace\\DBFlatFiles\\bibleVerses.txt";
 
-		    String infile = 
-		    		"/home/michael/Project/CSULB/marcham/devAppSpace/dotMike/List_of_Companies.mike"; 
+//		    String         infile  = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+//		                                   "\\devAppSpace\\DBFlatFiles\\List_of_Companies.txt"; 
 
-		    String outfile = 
-		    		"/home/michael/Project/CSULB/marcham/devAppSpace/dotMike/characterOutput.txt";
+//		    String         outfile = "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+//		                                   "\\devAppSpace\\DBFlatFiles\\characterOutput.txt";
+
+		    String         infile = "/home/michael/Project/devAppSpace/DBFlatFiles/List_of_Companies.txt";
+
+		    String         outfile = "/home/michael/Project/devAppSpace/DBFlatFiles/characterOutput.txt";
 
 		    try {
 
@@ -160,8 +170,7 @@ public class FileProcessing {
 //			lines = filePro.parseLinesAlphabetic();
 
 			filePro.postLines("We believe it to be the work of \"the SpinManster\"");
-			filePro.postLines("who compromised the CSULB GRID back in 1999" );
-
+			filePro.postLines("who compromised the csulb GRID back in 1999" );
 //kkk			filePro.postLines("He's been running shit since then." );
 
 //		    filePro.PrintLines(lines);	
@@ -169,4 +178,6 @@ public class FileProcessing {
 		}
 }
     
+    // parse XML file
+    // ArrayList returnAlphabetical( 
 

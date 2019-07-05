@@ -3,70 +3,96 @@ package CECS;
 import java.util.*;
 import java.io.*;
 
+/*
+ * Filename: 
+ * Purpsose:
+ */
 public final class OperatingSystem {
 
-        
-        
+    private String m_OSDescription = new String("BSD Linux" ); 
 
-//        private SixSigmaISO9001 class_174 = new Application( m_preCanned[0] ); 
+    private J2EEAppServer m_JavaVirualMachine = new J2EEAppServer(); 
 
-        private String m_OperatingSys   = new String("BSD Linux" ); 
-        private String m_MAC_802_11ac   = "MAC-10"; // this has to do with "context" 
-                                                // if whoever is tasked with this *field 
-                                                // fails 
-                                                // no memory allocated on the heap. 
 
-                                                // if (u tri 2 access memory ) 
-                                                //  
-                                                // triggers auto-drive-by. 
+    //
+    // Constructor: 
+    //
+    public OperatingSystem(){
+        System.out.println("Inside OperatingSystem()");
+    }
 
-        //
-        // Constructor: defualt
-        //
-        public OperatingSystem(){
-        }
+    // 
+    // Constructor II
+    // 
+    public OperatingSystem( String os  ){
+       this.m_OSDescription = os;	
+    }
 
-        // 
-        // Constructor II
-        // 
-        public OperatingSystem( String os  ){
-           this.m_OperatingSys = os;	
-        }
+    
+    // 
+   // method name: 
+    // 
+    public void setOSDescription( String os){  
+       this.m_OSDescription = os;
+    }
 
-        // 
-        // 
-        // 
-        public void setOS( String os){  
-           this.m_OperatingSys = os;
-        }
+    // 
+    // method name: getOSDescription()
+    // 
+    public String getOSDescription(){  
+     String retValue = null; 
+     retValue = new String( m_OSDescription );
+     return retValue; 
+    }
 
-        // 
-        // 
-        // 
-        public String getOS(){  
+    // 
+    //  method name:  isApplicationLoadable() 
+    // 
+    public void isApplicationLoadable(){
+         // Michael registered
+         // Mario registered
+         // James registered
+         // Marlon registered
+         // Alex registered
 
-        // String retValue = null; 
-        // retValue = new String( m_OperatingSys );
-        // return retValue; 
-           return m_OperatingSys;
-        }
+        // Application.isLoadable
+    }
 
-        public void isApplicationLoadable(){
-//        	Application.isLoadable
-        }
+    // 
+    //  method name: loadApp( Library app )
+    // 
+    public void loadApp( Library app ){
 
-        // 
-        //  loadApp 
-        // 
-        public void loadApp( Application app ){
+    }
 
-        	OSGIServices classProject_Masters = app;
-        	
-        	classProject_Masters.get_Name();
-        	classProject_Masters.get_HomeDirectory();
-        	
-        }
-}
+    // 
+    // method name: 
+    // 
+    public void setRuntime( J2EEAppServer runtime ){  
+       m_JavaVirualMachine = runtime; 
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+    //
+    // main()
+    //
+    /////////////////////////////////////////////////////////////////////////
+
+    public static void main( String[] argv) {
+        OperatingSystem theSystem = null; 
+
+        if ( argv.length > 0 )
+            System.out.println("command line param:argv[0] " + argv[0] );
+
+        theSystem = new OperatingSystem();
+        theSystem.setRuntime( new J2EEAppServer()); 
+        theSystem.setOSDescription( "MAC OS");  // auto drive-by 
+
+//        MISC.issueSystemCall("ls ./src/CECS -lrt");
+
+    }  // end main()
+
+} 
 
 	
 

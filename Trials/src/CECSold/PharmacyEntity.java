@@ -1,4 +1,4 @@
-package CECS;
+package CECSold;
 
 public class PharmacyEntity {
 

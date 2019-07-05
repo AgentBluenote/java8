@@ -1,5 +1,6 @@
+package CECSold;
+
 //package dictionary;
-package CECS;  
 
 
 import java.lang.StringBuilder;
@@ -15,13 +16,11 @@ import java.io.PrintWriter;
 public class BibleCompanion {
 
 	// 
-	// Construptor 
+	// Constructor 
 	// 
 	public BibleCompanion() {
-        System.out.println("Method == BibleCompanion()" );
 
-        System.out.println("ROOTDIR is C:\\Users\\Michael\\devEnv\\ \n"
-        		+ "devAppSpace\\DBFlatFiles\\bibleVerse");
+        System.out.println(" Constructor == BibleCompanion()" );
 	}
 
 	// 
@@ -29,38 +28,48 @@ public class BibleCompanion {
 	// 
     public BibleCompanion( String flatFile ) {
 
-        BufferedReader inputStream = null;
-	    PrintWriter outputStream   = null;
-	    String buffer = new String();
+        BufferedReader inputStream   = null;
+	    PrintWriter    outputStream  = null;
+	    String sourceFile = null; 
+	    String outFile    = null; 
+	    String buffer     = new String();
 
-        System.out.println("Method == BibleCompanion( String flatFile" );
-        
-        
 
+	    sourceFile = new String( "C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+	                                      "\\SnapshotsNeroLocal\\devEnv\\" +
+	    		                          "devAppSpace\\DBFlatFiles\\bibleVerses.txt");
+
+	    outFile = new String(
+	    		"C:\\Users\\IHATEALL\\Downloads\\Mychael" + 
+	              "\\SnapshotsNeroLocal\\devEnv\\" +
+   				  "devAppSpace\\DBFlatFiles\\characterOutput.txt" ); 
+        
 	    try{
 	    	// 
 	    	// input file
 	    	// 
-            inputStream = new BufferedReader(
-            		new FileReader( "C:\\Users\\Michael\\devEnv\\devAppSpace\\"
-                                  + "DBFlatFiles\\bibleVerses.txt"));
+            inputStream = new BufferedReader( new FileReader( sourceFile ));
 
-            outputStream = new PrintWriter(
-            		new FileWriter("C:\\Users\\Michael\\devEnv\\devAppSpace\\"
-                                  + "DBFlatFiles\\characterOutput.txt"));
+	    	// kkk
+	    	// output file
+	    	// 
+            outputStream = new PrintWriter( new FileWriter( outFile ));
+            
             inputStream.readLine();
 	        while ((buffer = inputStream.readLine()) != null) {
 
-	            System.out.println("this uses JPA" + buffer);
-	            System.out.println("C:\\Users\\Michael\\devEnv\\devAppSpace\\DBFlatFiles");
+	            System.out.println("this uses JPA " + buffer);
 
 	            outputStream.println("Delimiter::");
-	            outputStream.println(inputStream);
+
+	            outputStream.println(buffer);
+
 	        }
         } 
         catch(Exception e){
 	   	    e.printStackTrace();
 	    }
+	    /*
         finally{
             System.out.println("Inside finally Block");
 
@@ -71,7 +80,7 @@ public class BibleCompanion {
   	        if (outputStream != null) {
   	            outputStream.close();
   	        }
-  	    }
+  	    } */
     }
 
 	//
