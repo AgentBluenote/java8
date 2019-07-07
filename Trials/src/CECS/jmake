@@ -1,0 +1,18 @@
+
+
+export CSSCS_JAR=$R/openmap.jar:$R/libs/mikesfly.jar
+
+#javac -classpath $CSSCS_JAR -d $PWD/classes $PWD/*java
+
+javac -Xlint:unchecked  -classpath $CSSCS_JAR -d $PWD $PWD/*java
+
+
+#mv $PWD/classes/* $PWD/classes/unix/  # the package thows this off MIKE
+
+cd $PWD/CECS
+
+jar cvf helloWorld.jar *class  1>/home/michael/dev/null/bitsandbitsr
+
+
+
+

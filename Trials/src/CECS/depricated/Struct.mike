@@ -1,0 +1,8 @@
+package CECS;
+//package dictionary;
+
+public class Struct {
+  // book keeping stuff
+  // treat is like a List, Set, or Array [] 
+  // abstract class 
+}
