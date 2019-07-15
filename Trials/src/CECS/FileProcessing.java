@@ -3,171 +3,191 @@ package CECS;
 import java.util.*;
 import java.io.*;
 
+
+
 public class FileProcessing {
 
    private String         m_inFilePath    = null; 
    private String         m_outFilePath   = null; 
 
-   private BufferedReader m_inputStream   = null;
-   private PrintWriter    m_outputStream  = null;
+   private BufferedReader m_inStream   = null;
 
-   private File file      = null; 
+   private PrintWriter    m_outStream   =  null;
+   private File           m_file            = null;
 
-   private ArrayList<String> m_bufferedLines = null; 
-
-// 
-//  name :    FileProcessing()
-// 
+    // 
+    //  Construcor I 
+    // 
     public FileProcessing() {
+        System.out.println( "FileProcessing()" );
+    } 
 
-	        System.out.println( "FileProcessing()" );
-		} 
+    // 
+    //  method name: 
+    // 
+    public void setInFilePath( String inFile ) {
+        System.out.println("Inside setInFilePath(inFile)" + inFile ); 
 
+        m_inFilePath = new String( inFile );
+        m_file = new File( m_inFilePath );
+    }
 
-		public void  systemCall() {
-			Process run = null;
+    // 
+    //  method name: 
+    // 
+    public void setOutFilePath( String filename ) {
 
-	        try {
-				run = Runtime.getRuntime().exec("ls");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+        System.out.println( "Inside setOutFilePath " + m_outFilePath ); 
 
+        m_outFilePath = new String(filename); 
+//    	m_file        = new File( m_outFilePath  );
+
+    	m_file        = new File( m_outFilePath  );
+
+    }
+
+    // 
+    //  method signature : 
+    // 
+    public ArrayList<String> parseLines() {
+        String            buffer        = new String();
+        ArrayList<String> bufferedLines = new ArrayList<String>();
+        int               index         = 0;
+
+        try{
+   	        // 
+      	    // input file
+     	    // 
+  	        System.out.println("parseLines " +  m_inFilePath );
+
+  	        // MIKE
+            m_inStream = new BufferedReader( new FileReader( m_inFilePath ));
+
+            m_inStream.readLine();
+
+            while ((buffer = m_inStream.readLine()) != null) {
+      	        bufferedLines.add(buffer);  
+		       	index++;
+
+                System.out.println("DEBUG: line[" + index + "]"  + buffer);
+	        }
+	    } 
+	    catch(Exception e){
+	        e.printStackTrace();
+        }
+
+        return bufferedLines;
+    }
+
+    // 
+    //  method signature : 
+    // 
+    public void write_to_file( ArrayList<String> i_handle ){
+//	    java.util.Collections.sort( bufferedLines );  MIKE
+
+        try {
+			m_outStream  = new PrintWriter( m_outFilePath );
+			m_outStream  = new PrintWriter( m_outFilePath );
+
+    	    // 
+    	    // for each loop HOMIE 
+    	    // 
+	        for(String i : i_handle ) {
+	            System.out.println( "where is my C++ book?" + i );
+
+	    	    m_outStream.println(i);
+
+//			    m_outStream.write(i_handle)); MIKE maybe printf style formatting. 
+	        }
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
+    }
 
-		// 
-		//  name :    
-		// 
-        public void setInFilePath( String inFile ) {
-             m_inFilePath = new String( inFile );
-             System.out.println(m_inFilePath); 
-        }
-
-		// 
-		//  name :    
-		// 
-        public void setOutFilePath( String outFile ) {
-
-             m_outFilePath = new String( outFile );
-        }
-
-
-		// 
-		//  method signature : 
-		// 
-        public ArrayList parseLines() {
-        	int index     = 0;
-		    String buffer = new String();
-
-        	m_bufferedLines = new ArrayList<String>();
-	        
-		    try{
-		    	// 
-		    	// input file
-		    	// 
-		    	System.out.println( m_inFilePath );
-
-	            m_inputStream = new BufferedReader( new FileReader( m_inFilePath ));
-	            m_inputStream.readLine();
-
-		        while ((buffer = m_inputStream.readLine()) != null) {
-		        	m_bufferedLines.add(buffer);  
-		        	index++;
-
-		            System.out.println("DEBUG: line[" + index + "]"  + buffer);
-		        }
-	        } 
-	        catch(Exception e){
-		   	    e.printStackTrace();
-		    }
-
-		    return m_bufferedLines;
-	    }
-
-		// 
-		//  method signature : 
-		// 
-        public ArrayList parseLinesAlphabetic(){
-			java.util.Collections.sort( m_bufferedLines );
-
-			// foreach loop  MIKE
-			for(String i : m_bufferedLines ) {
-				   System.out.println("where is my C++ book?" + i);
-			}
-
-			return m_bufferedLines;
-	    }
-
+    //
+    // utility function.  
+    //
+    private void PrintLines( ArrayList<String> input){
+	    int j =0;
 	    // 
-	    // logic to write to a file MIKE 
+	    // just a check
 	    // 
-	    public void postLines( String content ){
+	    j=input.size();
 
+	    for(int index = 0; index< j ; index++ ){
+            System.out.println("line[" + index + "] is: " + input.get(index) );
 	    }
+    }
 
-        //
-		// utility function.  
-        //
-	    private void PrintLines( ArrayList<String> input){
-			int j =0;
-			// 
-			// just a check
-			// 
-			j=input.size();
-			for(int index = 0; index< j ; index++ ){
-		      System.out.println("line[" + index + "] is: " + input.get(index) );
-			}
-	    }
+    //
+    // method name:
+    //
+    public void NIO_write_to_NVRAM( String fqf ) {
+    	
+    System.out.println( "this is a debug: " + fqf );	
+    	
+    	
+        try {
 
+            String content = "Thisthis is the2 content to write into file";
+
+//            File file = new  File("C:/Users/Geroge/SkyDrive/Documents/inputFile.txt");
+
+//            File file = new  File( fqf );
+
+            // if file doesnt exists, then create it
+            if (!m_file.exists()) {
+                m_file.createNewFile();
+            }
+
+            FileWriter fw = new FileWriter( m_file.getAbsoluteFile() );
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(content);
+            bw.close();
+
+            System.out.println("Done");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    } 
+    
+    
+    
+    
 //////////////////////////////////////////////////////////////////////////////////////////
 //
 // main()  Driver  
 //
 //////////////////////////////////////////////////////////////////////////////////////////
-		@SuppressWarnings("unchecked")
-		public static void main(String[] args) {
 
-			FileProcessing filePro = null;
+    @SuppressWarnings("unchecked") //  <---  this is a suppresor.  M.A. 
+    public static void main(String[] args) {
+
+        ArrayList<String> lines  = new ArrayList<String>();
+
+        String            infile = "/home/michael/testbench/List_of_Companies.mike.test"; 
+
+        String            outfile = "/home/michael/testbench/shortlist.txt";
+
+        FileProcessing    filePro = new FileProcessing( );
+
+	    filePro.setInFilePath( infile );
+	    filePro.setOutFilePath(outfile );
+
+	    lines = filePro.parseLines();
+///	    System.out.println( "After call to parseLines " + lines.size());
+
+	    filePro.NIO_write_to_NVRAM( outfile );
+
+//	    filePro.write_to_file( lines );
+	
+	}
+//}  // MIKE
+
+class WriteToFileExample {
 
 
-		    String infile = 
-		    		"/home/michael/Project/CSULB/marcham/devAppSpace/dotMike/List_of_Companies.mike"; 
 
-		    String outfile = 
-		    		"/home/michael/Project/CSULB/marcham/devAppSpace/dotMike/characterOutput.txt";
-
-		    try {
-
-				Runtime.getRuntime().exec("pwd");
-
-			} catch (IOException e) {
-
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-
-        	ArrayList<String> lines = new ArrayList<String>();
-
-			filePro = new FileProcessing( );
-
-			filePro.setInFilePath( infile );
-
-			filePro.setOutFilePath(outfile);
-
-			lines = filePro.parseLines();
-
-//			lines = filePro.parseLinesAlphabetic();
-
-			filePro.postLines("We believe it to be the work of \"the SpinManster\"");
-			filePro.postLines("who compromised the CSULB GRID back in 1999" );
-
-//kkk			filePro.postLines("He's been running shit since then." );
-
-//		    filePro.PrintLines(lines);	
-//		    filePro.PrintLines(lines);	
-
-		}
 }
-    
-
+}  // MIKE

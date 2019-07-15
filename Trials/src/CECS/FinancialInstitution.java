@@ -60,6 +60,8 @@ class FinancialInstitution extends Observable{
     private String m_account_number = new String( "10273-76628") ;
     private String m_institution    = new String( "Bank of America") ;
 
+    private	FileProcessing m_NVRAM = new FileProcessing();
+
 //    private Calendar m_calendar = m_clock.getTimeStamp(); 
 
     private BigDecimal m_balance = new BigDecimal("900.00");
@@ -68,6 +70,7 @@ class FinancialInstitution extends Observable{
 
 //    private DirectDeposit dd = null; 
 //    Fully Quailified: look like this  "122000661-0383-10273-76628";
+
 
     //
     //public FinancialInstitution( Calendar seed ){
@@ -84,9 +87,27 @@ class FinancialInstitution extends Observable{
     //  method name: 
     //     
     //     store info in some Database. 
-    public void write_2_NVRAM( ){
+    public void write_to_NVRAM( ){
+        System.out.println( "write_to_NVRAM"   );
+    	
+    // 1992 CitiBank  ( 5 years because CMS 05 requrirment was not met. $27.01 )
+    //        
+    // 1999 Bank Of America 
+    //
+  	// 2001 Prudential ( Joint Account; Business Account: 3 people )  
+    //
+    // 2012 Bank Of America ( Myrtle Beach South Carlolina ) 
+    //
+    // 2012 Union Bank  
 
-       // NGC      $4000.00/month   1st and 3rd Thurs.
+    // 2018 Wells Fargo ( SSDI only ) 	
+    //      On the 3rd. 
+    	
+    	
+    	
+
+       // NGC      $4000.00/month   1st and 3rd Thurs.  
+
        // UNUM     $4200.00/month
        // RSystems ( $48.00/hour @ 40 )  + 10
        // Edison   ( $50.00/hour @ 40 )  
@@ -145,22 +166,28 @@ class FinancialInstitution extends Observable{
     //
     //
     // method name: 10th and 25th 
-    // ASIC -  "Bread to kill, NOT to care." 
     //
     public void direct_deposit_volt( int dayOfMonth ){
 
     	switch( dayOfMonth ){
 
     	    case 10: 
+    
     	    	System.out.println("Rsystems deposit of : $2,700.00");
+
     	    	this.notifyObservers(); //  
 
     	    	break;
 
     	    case 25:  
     	    	System.out.println("Rsystems deposit of : $2,700.00");
+
     	    	this.notifyObservers(); //  
+
     	    	break;
+
+    	    default:  
+    	    	System.out.println("DEFAULT: it's not the 10th or 25th");
     	}  // end of switch
     } 
 
@@ -175,6 +202,7 @@ class FinancialInstitution extends Observable{
 
     	miked.start();
     }
+
     // 
     // method signiture 
     // 
@@ -204,6 +232,15 @@ class FinancialInstitution extends Observable{
 
        Student              Ariana  = new KeptWomenStudent();
        FinancialInstitution wells   = new FinancialInstitution();
+       
+       wells.write_to_NVRAM();
+
+
+   	   FileProcessing nvram = new FileProcessing();
+
+//    	nvram.setInFilePath(inFile);
+ //   	nvram.setInFilePath(outFile);
+    	
 
        Ariana.updateFinancialInstitution( wells );
 

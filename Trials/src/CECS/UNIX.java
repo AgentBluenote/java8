@@ -1,5 +1,8 @@
 
 /*
+
+bash
+
 Tricky Dick!
 
 
@@ -24,6 +27,8 @@ netstat
 
 lex
 yacc   
+
+uptime - how long has the system been up since last reboot. 
 
 printf();
 
