@@ -4,7 +4,9 @@ import java.util.*;
 import java.io.*;
 
 
-
+//
+//
+//
 public class FileProcessing {
 
    private String         m_inFilePath    = null; 
@@ -40,8 +42,6 @@ public class FileProcessing {
         System.out.println( "Inside setOutFilePath " + m_outFilePath ); 
 
         m_outFilePath = new String(filename); 
-//    	m_file        = new File( m_outFilePath  );
-
     	m_file        = new File( m_outFilePath  );
 
     }
@@ -50,15 +50,17 @@ public class FileProcessing {
     //  method signature : 
     // 
     public ArrayList<String> parseLines() {
-        String            buffer        = new String();
-        ArrayList<String> bufferedLines = new ArrayList<String>();
+
         int               index         = 0;
 
+        String            buffer        = new String();
+        ArrayList<String> bufferedLines = new ArrayList<String>();
+
         try{
-   	        // 
+            // 
       	    // input file
      	    // 
-  	        System.out.println("parseLines " +  m_inFilePath );
+            System.out.println("parseLines " +  m_inFilePath );
 
   	        // MIKE
             m_inStream = new BufferedReader( new FileReader( m_inFilePath ));
@@ -161,7 +163,7 @@ public class FileProcessing {
 //
 //////////////////////////////////////////////////////////////////////////////////////////
 
-    @SuppressWarnings("unchecked") //  <---  this is a suppresor.  M.A. 
+//    @SuppressWarnings("unchecked") //  <---  this is a suppresor.  M.A. 
     public static void main(String[] args) {
 
         ArrayList<String> lines  = new ArrayList<String>();
@@ -172,22 +174,21 @@ public class FileProcessing {
 
         FileProcessing    filePro = new FileProcessing( );
 
-	    filePro.setInFilePath( infile );
-	    filePro.setOutFilePath(outfile );
+        filePro.setInFilePath( infile );
+        filePro.setOutFilePath(outfile );
 
-	    lines = filePro.parseLines();
+        lines = filePro.parseLines();
 ///	    System.out.println( "After call to parseLines " + lines.size());
 
-	    filePro.NIO_write_to_NVRAM( outfile );
+        filePro.NIO_write_to_NVRAM( outfile );
 
 //	    filePro.write_to_file( lines );
-	
 	}
 //}  // MIKE
 
-class WriteToFileExample {
+    class WriteToFileExample {
 
 
+    }
 
-}
-}  // MIKE
+}  // end of class 

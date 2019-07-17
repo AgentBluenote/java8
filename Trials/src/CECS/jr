@@ -11,17 +11,18 @@ export CLASSPATH=".:$PWD"
 
 # java -cp ".:$CLASSPATH/helloWorld.jar" CECS.Student
 # java -cp ".:$CLASSPATH/helloWorld.jar" CECS.KeptWomenStudent
+# java -cp ".:$CLASSPATH/helloWorld.jar"  CECS.FinancialInstitution
+# java -cp ".:$CLASSPATH/helloWorld.jar"  CECS.FileProcessing
 # java -cp ".:$CLASSPATH/helloWorld.jar" CECS.MISC
 # java -cp ".:$CLASSPATH/helloWorld.jar" CECS.CriminalFactory
 # java -cp ".:$CLASSPATH/helloWorld.jar" CECS.JVMRunTime
 # java -cp ".:$CLASSPATH/helloWorld.jar" CECS.Platform
 # java -cp ".:$CLASSPATH/helloWorld.jar" CECS.XMLProxy
-# java -cp ".:$CLASSPATH/helloWorld.jar" CECS.Driver
+  java -cp ".:$CLASSPATH/helloWorld.jar" CECS.Driver
 # java -cp ".:$CLASSPATH/helloWorld.jar" CECS.TableExample
 # java -cp ".:$CLASSPATH/helloWorld.jar" CECS.MyThread
 
 # java -cp ".:$CLASSPATH/helloWorld.jar"  CECS.TimeServer
-  java -cp ".:$CLASSPATH/helloWorld.jar"  CECS.FinancialInstitution
 
 
 # java -cp ".:$CLASSPATH/helloWorld.jar" CECS.MyThread

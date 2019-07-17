@@ -49,7 +49,6 @@ class FinancialInstitution extends Observable{
 
     public int DAY_OF_MONTH = 0; 
 
-    // BankOfAmerica.java
     // the Rounting number starts with either 0 or 1 
     // one is for transfer into the bank. 
     // the other is for withdrawsout ofthe ban. 
@@ -103,9 +102,6 @@ class FinancialInstitution extends Observable{
     // 2018 Wells Fargo ( SSDI only ) 	
     //      On the 3rd. 
     	
-    	
-    	
-
        // NGC      $4000.00/month   1st and 3rd Thurs.  
 
        // UNUM     $4200.00/month

@@ -67,8 +67,6 @@ public class TimeServer{
     //  every other Thursday. 
     //
     public void printCalendarInfo(){ 
-//MIKE
-//        Calendar jit = new GregorianCalendar( );
 
         // begin output
         System.out.println("Current Time\n\n" );
@@ -97,7 +95,7 @@ public class TimeServer{
     //
     //
     //
-    public  Calendar getTimeStamp(){
+    public Calendar getTimeStamp(){
 
         Calendar ret_value = new GregorianCalendar();
 
