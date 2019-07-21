@@ -1,17 +1,15 @@
 
 
-export CSSCS_JAR=$R/openmap.jar:$R/libs/mikesfly.jar
-
-#javac -classpath $CSSCS_JAR -d $PWD/classes $PWD/*java
-
-javac -Xlint:unchecked  -classpath $CSSCS_JAR -d $PWD $PWD/*java
+export PROJECT_LIB=/home/mmichael/git666/Java8/Trials/src/CECS/CECS
 
 
-#mv $PWD/classes/* $PWD/classes/unix/  # the package thows this off MIKE
+export JMAKE=.:./dep:$PROJECT_LIB/cecs.jar
+
+javac -Xlint:unchecked  -classpath $JMAKE -d $PWD $PWD/*java
 
 cd $PWD/CECS
 
-jar cvf helloWorld.jar *class  1>/home/michael/dev/null/bitsandbitsr
+jar cvf cecs.jar *class  1>/home/michael/dev/null/bitsandbitsr
 
 
 

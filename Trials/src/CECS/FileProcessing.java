@@ -43,7 +43,6 @@ public class FileProcessing {
 
         m_outFilePath = new String(filename); 
     	m_file        = new File( m_outFilePath  );
-
     }
 
     // 
@@ -88,8 +87,8 @@ public class FileProcessing {
 //	    java.util.Collections.sort( bufferedLines );  MIKE
 
         try {
-			m_outStream  = new PrintWriter( m_outFilePath );
-			m_outStream  = new PrintWriter( m_outFilePath );
+            m_outStream  = new PrintWriter( m_outFilePath );
+	    m_outStream  = new PrintWriter( m_outFilePath );
 
     	    // 
     	    // for each loop HOMIE 

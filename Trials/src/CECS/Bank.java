@@ -15,7 +15,6 @@ class Bank extends FinancialInstitution{
     // one is for transfer into the bank. 
     // the other is for withdrawsout ofthe ban. 
 
-
     private String m_routing_number = new String(  "122000661 ");
     private String m_check_number   = new String( "0383 ");
     private String m_account_number = new String( "10273-76628") ;
@@ -75,10 +74,8 @@ class Bank extends FinancialInstitution{
 
 //    	nvram.setInFilePath(inFile);
  //   	nvram.setInFilePath(outFile);
-    	
 
        Ariana.updateFinancialInstitution( wells );
-
        Ariana.what_do_we_do();
        
 //       wells.direct_deposit_volt(10);
