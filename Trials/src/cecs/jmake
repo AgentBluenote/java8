@@ -1,13 +1,13 @@
 
 
-export PROJECT_LIB=/home/mmichael/git666/Java8/Trials/src/CECS/CECS
+export PROJECT_LIB=/home/mmichael/git666/Java8/Trials/src/cecs/cecs
 
 
 export JMAKE=.:./dep:$PROJECT_LIB/cecs.jar
 
 javac -Xlint:unchecked  -classpath $JMAKE -d $PWD $PWD/*java
 
-cd $PWD/CECS
+cd $PWD/cecs
 
 jar cvf cecs.jar *class  1>/home/michael/dev/null/bitsandbitsr
 

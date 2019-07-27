@@ -1,5 +1,5 @@
 //package dictionary;
-package CECS;  
+package cecs;  
 
 
 import java.lang.StringBuilder;

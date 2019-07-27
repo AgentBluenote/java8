@@ -1,29 +1,27 @@
 
-package CECS;
+package cecs;
 
 import java.util.*;
 
 class MyThread extends Thread {
 
-    private String thread_name                          = null;
-    private Vector<FinancialInstitution> m_federal_bank = new Vector<FinancialInstitution>();
+    private String m_thread_name                          = null;
 
     // private Vector<String> vec = new Vector<String>();
 
+
     //
-    // Constructor I:
-    /////
-    public MyThread( String thread_name, FinancialInstitution  fi ){
-  
-          thread_name           =  thread_name;
-          m_federal_bank.add(fi);
+    // Constructor I: 
+    //
+    public MyThread( String st_name ){
+        m_thread_name = st_name;
     }
 
     //
     // Constructor II:
     //
-    public MyThread( String st_name ){
-        thread_name = st_name;
+    public MyThread( String m_thread_name, FinancialInstitution  fi ){
+          m_thread_name =  m_thread_name;
     }
 
     // 
@@ -34,8 +32,11 @@ class MyThread extends Thread {
       try {
   
         for(;;){
-          System.out.println(  thread_name);
+
+          System.out.println(  m_thread_name );
           System.out.println("Do Some Work!");
+          
+          
 
 //MIKE          this.activeCount();
 
@@ -57,8 +58,7 @@ class MyThread extends Thread {
     MyThread t2=  new MyThread("Second Thread");
     MyThread t3=  new MyThread("Thread Thread");
     
-
-    FinancialInstitution jit = new FinancialInstitution();
+//    FinancialInstitution jit = new FinancialInstitution();
     
 //    vec.add( t1 );
  //   vec.add( t2 );
@@ -76,16 +76,19 @@ class MyThread extends Thread {
   public static void main(String[] args) {
 //    Vector v = new Vector();
 
+//          System.out.println("Do Some Work!");
 
     MyThread t1 = new MyThread("First Thread");
-    MyThread t2 = new MyThread("First Thread");
+    MyThread t2 = new MyThread("Second Thread");
 
     MyThread ffly = new MyThread("iii");
+    
+    
 
 //       v.getPreCannedTGroup(); 
 
-//    t1.start();
-//    t2.start();
+    t1.start();
+    t2.start();
 	  
   }
 }

@@ -1,0 +1,35 @@
+# setup environment
+
+export DEBUB="0" 
+
+export CSULB="/home/michael/project/CSULB"
+
+#export CLASSPATH=".:/home/michael/Project/cvs/java8/Trials/src/cecs/cecs:$CSULB"
+
+export CLASSPATH=".:$PWD"
+
+
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.Student
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.KeptWomenStudent
+# java -cp ".:$CLASSPATH/helloWorld.jar"  cecs.FinancialInstitution
+# java -cp ".:$CLASSPATH/helloWorld.jar"  cecs.Bank
+
+# java -cp ".:$CLASSPATH/helloWorld.jar"  cecs.FileProcessing
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.MISC
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.CriminalFactory
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.JVMRunTime
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.Platform
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.XMLProxy
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.Driver
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.TableExample
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.MyThread
+
+# java -cp ".:$CLASSPATH/helloWorld.jar"  cecs.TimeServer
+
+
+  java -cp ".:$CLASSPATH/helloWorld.jar" cecs.MyThread
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.MoneyLog
+ 
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.EchoServer 6666 
+# java -cp ".:$CLASSPATH/helloWorld.jar" cecs.EchoClient  192.168.0.4  6666
+

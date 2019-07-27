@@ -1,4 +1,4 @@
-package CECS;
+package cecs;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -164,7 +164,7 @@ public class XMLProxy{
         //
         // must have fully qualified path and filename.
         //
-        if ( argv.length == 0){  
+        if ( argv.length == 0){  	
             System.out.println("command line param:argv[0] " + "No input argument" );
 
         }
@@ -175,7 +175,8 @@ public class XMLProxy{
 
 //       filename    = new String( "employee.xml");
          filename    = new String( "gangland.xml");
-    	 path        = new  StringBuilder( System.getenv( "CSULB_XML" ) );
+//    	 path        = new  StringBuilder( System.getenv( "CSULB_XML" ) );
+    	 path        = new  StringBuilder( System.getenv( "TEST_BENCH" ) );
 
          System.out.println( "path: " + path.toString() ); 
 

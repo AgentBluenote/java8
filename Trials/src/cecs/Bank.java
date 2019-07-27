@@ -1,4 +1,4 @@
-package CECS;
+package cecs;
 //package dictionary;
 
 import java.math.BigDecimal;

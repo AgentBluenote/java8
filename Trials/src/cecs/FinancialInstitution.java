@@ -1,4 +1,4 @@
-package CECS;
+package cecs;
 //package dictionary;
 
 import java.math.BigDecimal;
@@ -53,19 +53,17 @@ class FinancialInstitution extends Observable{
     // one is for transfer into the bank. 
     // the other is for withdrawsout ofthe ban. 
 
-
     private String m_routing_number = new String(  "122000661 ");
     private String m_check_number   = new String( "0383 ");
     private String m_account_number = new String( "10273-76628") ;
     private String m_institution    = new String( "Bank of America") ;
 
     private	FileProcessing m_NVRAM = new FileProcessing();
-
-//    private Calendar m_calendar = m_clock.getTimeStamp(); 
-
     private BigDecimal m_balance = new BigDecimal("900.00");
 
 	private float ice; 
+	
+	private MyThread DirectDeposit_d = new  MyThread( "watchDogg" );
 
 //    private DirectDeposit dd = null; 
 //    Fully Quailified: look like this  "122000661-0383-10273-76628";
@@ -89,26 +87,33 @@ class FinancialInstitution extends Observable{
     public void write_to_NVRAM( ){
         System.out.println( "write_to_NVRAM"   );
     	
+    // 
     // 1992 CitiBank  ( 5 years because CMS 05 requrirment was not met. $27.01 )
     //        
     // 1999 Bank Of America 
+    //     NGC      $4000.00/month   1st and 3rd Thurs.  
+    //     UNUM     $4200.00/month
+    //         2008-2010
+    //     RSystems ( $48.00/hour @ 40 )  + 10
+    //     SSDI     ( $2100.00  ) 
     //
-  	// 2001 Prudential ( Joint Account; Business Account: 3 people )  
+  	// 2001 US Bank ( Joint Account; Business Account: 3 people )  
+    //      CEO
+    //      CFO
+    //      COO
+    //      
+    // 2012 Union Bank      :   
+    //     SSDI     ( $2100.00  ) 
     //
-    // 2012 Bank Of America ( Myrtle Beach South Carlolina ) 
+    // 2013 Bank Of America : ( Myrtle Beach South Carlolina ) 
+    //     SSDI     ( $2100.00  ) 
     //
-    // 2012 Union Bank  
-
-    // 2018 Wells Fargo ( SSDI only ) 	
-    //      On the 3rd. 
+    // 2018 Wells Fargo     : ( SSDI only ) 	
+    //      
+    //     SSDI     ( $2040.00  ) 
     	
-       // NGC      $4000.00/month   1st and 3rd Thurs.  
-
-       // UNUM     $4200.00/month
-       // RSystems ( $48.00/hour @ 40 )  + 10
        // Edison   ( $50.00/hour @ 40 )  
        // GE       ( $120,000.00 )  
-       // SSDI     ( $2040.00  ) 
        // 
        // Original Medicare  ( -$111.00/month )  a Federally Funded Project!
     }
